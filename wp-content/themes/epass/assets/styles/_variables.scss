@@ -1,6 +1,8 @@
 :root { 
   /* COLOURS */
   --color-primary: #00F096;
+  --color-primary-l: #4cf4b5;
+  --color-primary-d: rgb(0, 216, 137);
   --color-secondary: #642EC1;
   --color-dark: #0E001C;
   --color-grey-900:#DDDDDD;
@@ -39,9 +41,9 @@
   --component-spacing: clamp(3rem, 6.5vw + 1.05rem, 6.25rem);
 
    /* Misc */
-   --transition-sm: 0.2s ease;
-   --transition: 0.4s ease;
-   --transition-lg: 0.8s ease;
+   --transition-sm: 0.1s ease;
+   --transition: 0.2s ease;
+   --transition-lg: 0.4s ease;
  
    --border: 1px solid rgba(0, 0, 0, 0.2);
  

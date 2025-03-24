@@ -2,168 +2,188 @@
  * Helpers
  */
 
- flynt-component {
-    display: block;
-    position: relative;
+flynt-component {
+  display: block;
+  position: relative;
+}
+
+
+.small-caps {
+  text-transform: uppercase;
+  font-size:var(--font-size-small);
+  font-weight:900;
+  font-family: var(--font-family-text);
+  letter-spacing: 0.025em; 
+}
+
+.pageWrapper {
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: auto 1fr auto;
+  min-block-size: 100%;
+
+  .admin-bar & {
+    padding-block-start: var(--wp-admin--admin-bar--height);
   }
-  
-  .pageWrapper {
-    display: grid;
-    grid-template-columns: 100%;
-    grid-template-rows: auto 1fr auto;
-    min-block-size: 100%;
-  
-    .admin-bar & {
-      padding-block-start: var(--wp-admin--admin-bar--height);
-    }
+}
+
+.componentSpacing {
+  margin-block: var(--component-spacing);
+  margin-inline: 0;
+
+  &[data-theme] {
+    margin: 0;
+    padding-block: var(--component-spacing);
+    padding-inline: 0;
   }
-  
-  .componentSpacing {
-    margin-block: var(--component-spacing);
-    margin-inline: 0;
-  
-    &[data-theme] {
-      margin: 0;
-      padding-block: var(--component-spacing);
-      padding-inline: 0;
-    }
+}
+
+.wp-block-post-content > .alignfull {
+  margin-inline: auto;
+  max-inline-size: var(--content-max-width-full) !important;
+}
+
+.groupContainer {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: var(--flow-space);
+}
+
+.container {
+  margin-inline: auto;
+  max-inline-size: calc(
+    var(--content-max-width-full) + var(--container-spacing) * 2
+  );
+  padding-inline: var(--container-spacing);
+
+  &[data-size="full"] {
+    padding-inline: 0;
   }
-  
-  .wp-block-post-content > .alignfull {
-    margin-inline: auto;
-    max-inline-size: var(--content-max-width-full) !important;
+}
+
+[data-size="medium"] {
+  max-inline-size: var(--content-max-width);
+}
+
+[data-size="wide"] {
+  max-inline-size: var(--content-max-width-wide);
+}
+
+[data-size="full"] {
+  max-inline-size: 100%;
+}
+
+[data-align="left"] {
+  margin-inline: unset;
+}
+
+[data-align="center"] {
+  margin-inline: auto;
+}
+
+[data-text-align="left"] {
+  text-align: start;
+}
+
+[data-text-align="center"] {
+  text-align: center;
+}
+
+[data-flow="layout"] {
+  > * + * {
+    margin-block-start: calc(var(--component-spacing) / 2);
   }
-  
-  .groupContainer {
-    display: inline-flex;
-    flex-wrap: wrap;
-    gap: var(--flow-space);
+}
+
+[data-flow="content"] {
+  > * + * {
+    margin-block-start: var(--flow-space);
   }
-  
-  .container {
-    margin-inline: auto;
-    max-inline-size: calc(var(--content-max-width-full) + var(--container-spacing) * 2);
-    padding-inline: var(--container-spacing);
-  
-    &[data-size="full"] {
-      padding-inline: 0;
-    }
-  }
-  
-  [data-size="medium"] {
-    max-inline-size: var(--content-max-width);
-  }
-  
-  [data-size="wide"] {
-    max-inline-size: var(--content-max-width-wide);
-  }
-  
-  [data-size="full"] {
-    max-inline-size: 100%;
-  }
-  
-  [data-align="left"] {
-    margin-inline: unset;
-  }
-  
-  [data-align="center"] {
-    margin-inline: auto;
-  }
-  
-  [data-text-align="left"] {
-    text-align: start;
-  }
-  
+}
+
+// Balance layouted text lines on mobile.
+@media (max-width: (768px - 1)) {
+  [data-size="wide"],
+  [data-size="full"],
   [data-text-align="center"] {
-    text-align: center;
-  }
-  
-  [data-flow="layout"] {
-    > * + * {
-      margin-block-start: calc(var(--component-spacing) / 2);
-    }
-  }
-  
-  [data-flow="content"] {
-    > * + * {
-      margin-block-start: var(--flow-space);
-    }
-  }
-  
-  // Balance layouted text lines on mobile.
-  @media (max-width: (768px - 1)) {
-    [data-size="wide"],
-    [data-size="full"],
-    [data-text-align="center"] {
-      p,
-      .paragraph,
-      h1, h2, h3, h4, h5, h6,
-      .h1, .h2, .h3, .h4, .h5, .h6 {
-        text-wrap: balance;
-  
-        br {
-          display: none;
-        }
+    p,
+    .paragraph,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    .h1,
+    .h2,
+    .h3,
+    .h4,
+    .h5,
+    .h6 {
+      text-wrap: balance;
+
+      br {
+        display: none;
       }
     }
   }
-  
-  .scrollableTableWrapper {
-    -webkit-overflow-scrolling: touch;
-    overflow-x: auto;
+}
+
+.scrollableTableWrapper {
+  -webkit-overflow-scrolling: touch;
+  overflow-x: auto;
+}
+
+// Class for text that should only be visible to screen readers.
+.visuallyHidden,
+.visuallyHidden-focusable {
+  block-size: 1px;
+  clip: rect(0, 0, 0, 0);
+  inline-size: 1px;
+  margin: -1px;
+  overflow: hidden;
+  position: absolute;
+  transition: none !important;
+  white-space: nowrap;
+}
+
+.visuallyHidden-focusable {
+  &:focus-visible {
+    background-color: var(--color-background);
+    block-size: auto;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.1);
+    clip: auto;
+    color: var(--color-text);
+    font-size: 1rem;
+    inline-size: auto;
+    inset-block-start: 0;
+    inset-inline-start: 0;
+    outline-offset: -3px;
+    padding-block: 0.75rem;
+    padding-inline: 1rem;
+    text-decoration: none;
+    z-index: 100000;
   }
-  
-  // Class for text that should only be visible to screen readers.
-  .visuallyHidden,
-  .visuallyHidden-focusable {
-    block-size: 1px;
-    clip: rect(0, 0, 0, 0);
-    inline-size: 1px;
-    margin: -1px;
-    overflow: hidden;
-    position: absolute;
-    transition: none !important;
-    white-space: nowrap;
-  }
-  
-  .visuallyHidden-focusable {
-    &:focus-visible {
-      background-color: var(--color-background);
-      block-size: auto;
-      box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.1);
-      clip: auto;
-      color: var(--color-text);
-      font-size: 1rem;
-      inline-size: auto;
-      inset-block-start: 0;
-      inset-inline-start: 0;
-      outline-offset: -3px;
-      padding-block: 0.75rem;
-      padding-inline: 1rem;
-      text-decoration: none;
-      z-index: 100000;
-    }
-  }
-  
-  /**
+}
+
+/**
    * Box Helpers
    */
-  
-  .boxPadding {
-    padding-block: var(--box-spacing);
-    padding-inline: var(--box-spacing);
-  }
-  
-  .boxBorder {
-    border: solid 2px var(--color-border);
-  }
-  
-  /**
+
+.boxPadding {
+  padding-block: var(--box-spacing);
+  padding-inline: var(--box-spacing);
+}
+
+.boxBorder {
+  border: solid 2px var(--color-border);
+}
+
+/**
    * Themes
    */
-  
-  [data-theme] {
-    background-color: var(--color-background);
-    color: var(--color-text);
-  }
-  
+
+[data-theme] {
+  background-color: var(--color-background);
+  color: var(--color-text);
+}
