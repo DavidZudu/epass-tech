@@ -23,12 +23,12 @@
   }
 
   &::before {
-    background-color: var(--color-accent);
+    background-color: var(--color-primary);
     block-size: var(--button-width);
     border-radius: 50%;
     inline-size: var(--button-width);
 
-    @media (min-width: $breakpoint-tablet) {
+    @media (min-width: 768px) {
       --button-width: 80px;
       --button-height: 80px;
     }
@@ -40,7 +40,7 @@
     border-inline-start: 18px solid var(--color-background);
     inset-inline-start: calc(50% + 2px);
 
-    @media (min-width: $breakpoint-tablet) {
+    @media (min-width: 768px) {
       border-block-end-width: 17px;
       border-block-start-width: 17px;
       border-inline-start-width: 27px;

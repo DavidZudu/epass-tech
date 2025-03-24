@@ -30,7 +30,7 @@ flynt-component[name='SliderImages'] {
       z-index: 10;
 
       &::before {
-        background-color: var(--color-accent);
+        background-color: var(--color-primary);
         block-size: 100%;
         border-radius: 50%;
         content: '';

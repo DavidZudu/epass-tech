@@ -8,11 +8,11 @@ flynt-component[name='ListComponents'] {
     list-style: none;
     padding: 0;
 
-    @media (min-width: $breakpoint-tablet) {
+    @media (min-width: 768px) {
       --grid-columns: 2;
     }
 
-    @media (min-width: $breakpoint-tablet-horizontal) {
+    @media (min-width: 768px-horizontal) {
       --grid-columns: 3;
     }
   }

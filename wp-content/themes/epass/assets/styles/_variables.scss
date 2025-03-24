@@ -1,42 +1,24 @@
-:root,
-[data-theme="reset"] {
-  --color-accent: hsla(212, 100%, 45%, 1);
-  --color-background: hsla(0, 0%, 100%, 1);
-  --color-background-secondary: hsla(0, 0%, 19%, 0.08);
-  --color-border: hsl(0, 0%, 90%);
-  --color-border-secondary: hsl(0, 0%, 19%, 0.68);
-  --color-text: hsl(0, 0%, 19%, 1);
-  --color-text-muted: hsla(0, 0%, 19%, 0.8);
-  --color-error: hsl(343, 98%, 46%);
-}
+:root { 
+  /* COLOURS */
+  --color-primary: #00F096;
+  --color-secondary: #642EC1;
+  --color-dark: #0E001C;
+  --color-grey-900:#DDDDDD;
+  --color-grey-400:#888888;
 
-[data-theme="light"] {
-  --color-background: hsl(212, 76%, 97%);
-  --color-text: hsla(212, 100%, 15%, 1);
-  --color-border: hsla(212, 100%, 15%, 0.7);
-  --color-border-secondary: var(--color-border);
-}
+  /* Feedbacks */
+  --color-success: green;
+  --color-warning: yellow;
+  --color-danger: firebrick;
 
-[data-theme="dark"] {
-  --color-accent: hsla(79, 100%, 60%, 1);
-  --color-background: hsla(212, 100%, 15%, 1);
-  --color-background-secondary: hsl(228, 56%, 98%, 0.06);
-  --color-border-secondary: hsl(0, 0%, 90%, 0.68);
-  --color-text: hsla(0, 0%, 100%, 1);
-  --color-text-muted: hsl(0, 0%, 100%, 0.8);
-}
-
-$breakpoint-mobile-horizontal: 480px;
-$breakpoint-tablet: 768px;
-$breakpoint-tablet-horizontal: 1024px;
-$breakpoint-desktop: 1280px;
-
-:root {
-  /**
-   * FOUC can be reduced with good matching fallback font.
-   * https://meowni.ca/font-style-matcher/ or
-   * https://github.com/pixel-point/fontpie
-   */
+  /* Social Media Colours */
+  --color-facebook-brand: rgb(59, 89, 152);
+  --color-twitter-brand: rgb(85, 172, 238);
+  --color-linkedin-brand: rgb(0, 123, 181);
+  --color-youtube-brand: rgb(187, 0, 0);
+  
+  
+  /* Text varables */
   --font-family-heading: 'Anek Latin', sans-serif;
   --font-family-text: 'Open Sans', sans-serif;
   --font-size-body: 1.125rem; 
@@ -44,7 +26,10 @@ $breakpoint-desktop: 1280px;
   --font-size-body-large: 1.125rem;
   --flow-space: 1.5rem;
   --column-gap: clamp(2rem, 5vw, 5rem);
+  --color-text: var(--color-dark);
 
+
+  /* Spacing */
   --content-max-width: 700px;
   --content-max-width-wide: 900px;
   --content-max-width-full: 1200px;
@@ -52,6 +37,17 @@ $breakpoint-desktop: 1280px;
   --box-spacing: clamp(1rem, 2.50vw + 0.25rem, 2.25rem);
   --container-spacing: clamp(1rem, 2.5vw + 0.25rem, 2.25rem);
   --component-spacing: clamp(3rem, 6.5vw + 1.05rem, 6.25rem);
+
+   /* Misc */
+   --transition-sm: 0.2s ease;
+   --transition: 0.4s ease;
+   --transition-lg: 0.8s ease;
+ 
+   --border: 1px solid rgba(0, 0, 0, 0.2);
+ 
+   --box-shadow-lg: 0 8px 30px rgba(0, 0, 0, 0.2);
+   --box-shadow-md: 0 5px 10px rgba(0, 0, 0, 0.2);
+   --box-shadow-sm: 0 3px 5px rgba(0, 0, 0, 0.2);
 }
 
 
