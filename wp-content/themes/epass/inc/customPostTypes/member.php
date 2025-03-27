@@ -45,7 +45,6 @@ add_action('init', function (): void {
         'labels'                => $labels,
         'supports'              => ['title', 'editor', 'revisions'],
         'filter'            => ['team'],
-        'taxonomies'            => [''],
         'hierarchical'          => false,
         'public'                => true,
         'show_ui'               => true,
