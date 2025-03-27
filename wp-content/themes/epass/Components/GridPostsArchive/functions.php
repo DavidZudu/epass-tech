@@ -11,41 +11,78 @@ const FILTER_BY_TAXONOMY = 'category';
 
 add_filter('Flynt/addComponentData?name=GridPostsArchive', function (array $data): array {
     $data['uuid'] ??= wp_generate_uuid4();
-    $postType = POST_TYPE;
-    $taxonomy = FILTER_BY_TAXONOMY;
-    $terms = get_terms([
-        'taxonomy' => $taxonomy,
-        'hide_empty' => true,
-    ]);
+
+    $postType = get_post_type() ?: POST_TYPE;
+    $postTypeObject = get_post_type_object($postType);
     $queriedObject = get_queried_object();
-    if (count($terms) > 1) {
-        $data['terms'] = array_map(function ($term) use ($queriedObject) {
-            $timberTerm = Timber::get_term($term);
-            if ($queriedObject->taxonomy ?? null) {
-                $timberTerm->isActive = $queriedObject->taxonomy === $term->taxonomy && $queriedObject->term_id === $term->term_id;
-            }
 
-            return $timberTerm;
-        }, $terms);
-
-        // Add item for all posts
-        array_unshift($data['terms'], [
-            'link' => get_post_type_archive_link($postType),
-            'title' => $data['labels']['allPosts'],
-            'isActive' => is_home() || is_post_type_archive($postType),
-        ]);
+    // Detect filters from CPT's custom 'filter' argument
+    $filterTaxonomies = [];
+    if (!empty($postTypeObject->filter) && is_array($postTypeObject->filter)) {
+        
+        $filterTaxonomies = $postTypeObject->filter;
+    } else {
+        // fallback to default taxonomy if none defined
+        $filterTaxonomies = [FILTER_BY_TAXONOMY];
     }
 
+    $data['filters'] = [];
+    
+
+    foreach ($filterTaxonomies as $taxonomy) {
+        $terms = get_terms([
+            'taxonomy' => $taxonomy,
+            'hide_empty' => true,
+        ]);
+
+        if (!empty($terms) && !is_wp_error($terms)) {
+            $filterTerms = array_map(function ($term) use ($taxonomy, $queriedObject) {
+                $timberTerm = Timber::get_term($term);
+                $timberTerm->isActive = false;
+
+                if (($queriedObject->taxonomy ?? null) === $taxonomy &&
+                    ($queriedObject->term_id ?? null) === $term->term_id) {
+                    $timberTerm->isActive = true;
+                }
+
+                return $timberTerm;
+            }, $terms);
+
+            // Add "All" link for each filter group (optional)
+            array_unshift($filterTerms, [
+                'link' => get_post_type_archive_link($postType),
+                'title' => $data['labels']['allPosts'] ?? __('All', 'flynt'),
+                'isActive' => is_post_type_archive($postType),
+            ]);
+
+            $data['filters'][] = [
+                'taxonomy' => $taxonomy,
+                'terms' => $filterTerms,
+                'label' => $data['labels']['filterBy'] ?? __('Filter by', 'flynt'),
+            ];
+        }
+    }
+    
+    // Archive Title/Description
     if (is_home()) {
         $data['isHome'] = true;
         $data['title'] = $queriedObject->post_title ?? get_bloginfo('name');
     } else {
-        $data['title'] =  get_the_archive_title();
+        $data['title'] = get_the_archive_title();
         $data['description'] = get_the_archive_description();
     }
 
     return $data;
 });
+
+function getACFLayout(): array
+{
+    return [
+        'name' => 'gridPostsArchive',
+        'label' => __('Grid: Posts Archive', 'flynt'),
+        'sub_fields' => []
+    ];
+};
 
 Options::addGlobal('GridPostsArchive', [
     [
