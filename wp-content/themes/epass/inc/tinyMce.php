@@ -49,8 +49,54 @@ add_filter('tiny_mce_before_init', function (array $mceInit): array {
         }
     }
 
+    $mceInit['height'] = 150; // starting height
+
     return $mceInit;
 }, 10);
+
+add_action('admin_footer', function () {
+    ?>
+    <script>
+    (function ($) {
+        function resizeEditor(editor) {
+            const iframe = editor.iframeElement;
+            if (!iframe) return;
+
+            const doc = iframe.contentDocument || iframe.contentWindow.document;
+            const body = doc.body;
+            if (!body) return;
+
+            // Reset height before measuring
+            iframe.style.height = 'auto';
+
+            // Calculate new height (limit to 400px)
+            const contentHeight = body.scrollHeight;
+            const newHeight = Math.min(contentHeight + 20, 400);
+
+            iframe.style.height = newHeight + 'px';
+        }
+
+        // Wait for TinyMCE to be ready
+        window.addEventListener('load', function () {
+            if (typeof tinymce === 'undefined') return;
+
+            tinymce.on('AddEditor', function (e) {
+                const editor = e.editor;
+
+                editor.on('input keyup setcontent', function () {
+                    resizeEditor(editor);
+                });
+
+                // Initial resize
+                editor.on('init', function () {
+                    resizeEditor(editor);
+                });
+            });
+        });
+    })(jQuery);
+    </script>
+    <?php
+});
 
 add_filter('acf/fields/wysiwyg/toolbars', function (array $toolbars) {
     // Load Toolbars and parse them into TinyMCE.

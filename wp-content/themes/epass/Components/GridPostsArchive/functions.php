@@ -119,7 +119,8 @@ function getACFLayout(): array
     return [
         'name' => 'gridPostsArchive',
         'label' => __('Grid: Posts Archive', 'flynt'),
-        'sub_fields' => [           
+        'sub_fields' => [   
+            FieldVariables\setSectionContent(),                    
             [
                 'label' => __('Manual Source (Post Type or Term)', 'flynt'),
                 'name' => 'manualSource',

@@ -34,4 +34,12 @@ add_action('admin_enqueue_scripts', function (): void {
     ]);
 
     wp_enqueue_style('Flynt/assets/admin', Asset::requireUrl('assets/admin.scss'), [], null);
+    wp_add_inline_style('acf-input', '
+        .mce-edit-area iframe {
+            min-height: 150px !important;
+            max-height: 400px !important;
+            overflow-y: auto !important;
+            // resize: vertical;
+        }
+    ');
 });
