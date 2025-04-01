@@ -13,6 +13,8 @@
     </a>
     {% block layout %}           
        
+        {{renderComponent('NavigationMobile')}}
+
         <main id="mainContent" class="mainContent">
           {% if function('post_password_required') %}
             {{ function('get_the_password_form') }}

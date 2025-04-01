@@ -21,7 +21,7 @@ const watchFiles = [
   'templates/**/*',
   'lib/**/*',
   'inc/**/*',
-  './Components/**/*.{php,twig}'
+  './Components/**/*.{php,twig,js}'
 ]
 
 export default defineConfig(({ mode }) => {
