@@ -13,14 +13,17 @@
   }
   // TOP WRAP
   .top-wrap {
-    display: flex;
-    gap: 16px;
-    height: 80px;
-    background: var(--color-dark);
+    height: 60px;
     transition: var(--transition);
     backdrop-filter: blur(4px);
     border-bottom: var(--border);
-    padding-inline: 16px;
+    padding-right: 16px;
+    .container {
+      display: flex;
+      gap: 16px;
+      height: 100%;
+      padding-inline: 0;
+    }
     .at-top & {
       background: 0;
       backdrop-filter: blur(0px);
@@ -28,7 +31,7 @@
     .brand {
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 0px;
       margin-right: auto;
       .nav-toggle {
         border: none;
@@ -44,7 +47,7 @@
       }
       img {
         display: block;
-        height: 40px;
+        height: 32px;
       }
     }
     .extras-nav {
@@ -64,27 +67,86 @@
 
   // MENU WRAP
   .menu-wrap {
-    background:#eee;
-    position: fixed;
-    top: 80px;
-    left: 0; 
+    background: white;
+    border-radius: 8px;
+    border: var(--border);
+    position: absolute;
+    top: 78px;
+    left: 16px;
+    right: 16px;
+    max-width: 400px;
     visibility: hidden;
-    opacity:0;
+    opacity: 0;
     transition: var(--transition);
+    box-shadow: var(--box-shadow-lg);
+    overflow:auto;
+
     &.open-nav {
       visibility: visible;
       opacity: 1;
-      
-    } 
-    .sub-toggle {
-      &.active {
-        transform:rotate(180deg);
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    li {
+      border-bottom: var(--border);
+      &.menu-item-has-children {
+        &.open {
+          > .expandable button {
+            transform: rotate(180deg);
+          }
+        }
       }
-    }  
-    .sub-menu:not(.level-0){
-      transition: var(--transition);
-      max-height:0;
-      overflow:hidden;
+    }
+
+    .expandable {
+      display: flex;
+      align-items: center;
+
+      a {
+        flex: 1;
+        padding:16px;
+      }
+    }
+
+    .nav-button {
+      // Base styles here
+
+      &:focus-visible {
+        outline: 2px solid #007bff;
+        outline-offset: 2px;
+      }
+    }
+
+    .submenu-wrapper {
+      display: grid;
+      grid-template-rows: 0fr;
+      overflow: hidden;
+      transition: grid-template-rows 0.1s ease;
+      > ul {
+        min-height: 0;   // <-- 🔥 This makes the animation actually collapse      
+      }
+    }
+
+    .sub-menu {
+      overflow: hidden;
+      padding-left: 1rem;
+      background: #f9f9f9;
+
+      a {
+        padding:8px 16px;
+        &:hover {
+          background: #eee;
+        }
+      }
+    }
+
+    .open > .submenu-wrapper {
+      grid-template-rows: 1fr;
     }
   }
 }

@@ -1,68 +1,71 @@
 <flynt-component name="NavigationMobile" class="">
     {# {{ renderComponent('LayoutNoticeBanner') }} #}
     {# TOP WRAP #}
-        <section class="top-wrap"> <div class="brand">
-            <button class="nav-toggle">
-                {{ inline_svg('assets/images/nav-toggle-icon.svg') }}</button>
-            <a href="{{ site.link }}" class="brand">
-                {{logo}}
-            </a>
+        <section class="top-wrap"> <div class="container container--full">
+            <div class="brand">
+                <button class="nav-toggle">
+                    {{ inline_svg('assets/images/nav-toggle-icon.svg') }}</button>
+                <a href="{{ site.link }}" class="brand">
+                    {{logo}}
+                </a>
+            </div>
+            {% if menuExtras.items > 0 %}
+                <nav class="extras-nav">
+                    <ul>
+                        {% for item in menuExtras.items %}
+                            <li class="{{ item.classes|join(' ') }}">
+                                <a title="{{item.title}}" class="" href="{{ item.link }}" {{ item.target == '_blank' ? 'target="_blank" rel="noopener noreferrer"' }}>
+                                    {{item.title}}</a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </nav>
+            {% endif %}
         </div>
-        {% if menuExtras.items > 0 %}
-            <nav class="extras-nav">
-                <ul>
-                    {% for item in menuExtras.items %}
-                        <li class="{{ item.classes|join(' ') }}">
-                            <a title="{{item.title}}" class="" href="{{ item.link }}" {{ item.target == '_blank' ? 'target="_blank" rel="noopener noreferrer"' }}>
-                                {{item.title}}</a>
-                        </li>
-                    {% endfor %}
-                </ul>
-            </nav>
-        {% endif %}
     </section>
 
     {# MENU WRAP #}
 
-    <div
+    <section
         class="menu-wrap">
 
-        <!-- PRIMARY NAV -->
-        <nav class="primary-nav">
+        {# Primary Navigation #}
+        <nav aria-label="Primary navigation">
+            {% macro render_menu(items, level) %}
+    <ul class="level-{{ level }} {{level > 0 ? 'sub-menu'}}">
 
-            <button class=" purple nav-close nav-toggle">
-                <i class="fa-regular fa-xmark"></i>
-            </button>
+        {% for item in items %}
+            <li class="{{ item.classes|join(' ') }}">
 
+                <span class="expandable">
+                    <a class="menu-link {{ item.style|default('') }}" title="{{ item.title }}" href="{{ item.link }}" {{ item.target == '_blank' ? 'target="_blank" rel="noopener noreferrer"' }}>
+                        {{ item.title }}
+                    </a>
+                    {% if item.children %}
+                        <button class="nav-button icon-button" aria-expanded="false">
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                    {% endif %}
+                </span>
+
+                {% if item.children %}
+                    <div class="submenu-wrapper" role="region">
+                        {{ _self.render_menu(item.children, level + 1) }}
+                    </div>
+                {% endif %}
+            </li>
+        {% endfor %}
+
+    </ul>
+{% endmacro %}
+
+{{ _self.render_menu(menu.items, 0) }}
         </nav>
 
-        {% macro render_menu(items, level) %}
-            <ul class="sub-menu level-{{ level }}">
-                {# {% if level > 0 %}
-                    <button class="nav-back" title="Go back">
-                        <i class="fa-regular fa-chevrons-left" aria-hidden="true"></i>
-                    </button>
-                {% endif %} #}
-                <div class="link-wrap">
-                    {% for item in items %}
-                        <li class="{{ item.classes|join(' ') }}">
-                            <a class="menu-link {{ item.style|default('') }}" title="{{ item.title }}" href="{{ item.link }}" {{ item.target == '_blank' ? 'target="_blank" rel="noopener noreferrer"' }}>
-                                {{ item.title }}
-                            </a>
-                            {% if item.children %}
-                                <button class="sub-toggle" title="See sub-pages">
-                                    <i class="fa-regular fa-chevrons-right" aria-hidden="true"></i>
-                                </button>
-                                {{ _self.render_menu(item.children, level + 1) }}
-                            {% endif %}
-                        </li>
-                    {% endfor %}
-                </div>
-            </ul>
-        {% endmacro %}
 
-        {{ _self.render_menu(menu.items, 0) }}
-
-
-    </div>
+    </section>
 </flynt-component>
+
+
+
+
