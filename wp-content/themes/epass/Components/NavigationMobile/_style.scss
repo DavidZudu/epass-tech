@@ -6,10 +6,19 @@
   z-index: 100;
 
   @media screen and (min-width: 992px) {
-    // display: none;
+    display: none;
   }
   ul {
     @extend.list-reset;
+    li {
+      &.button {
+        all: unset; /* removes almost all styles */
+        a {
+          @extend.button;
+          @extend.small;
+        }
+      }
+    }
   }
   // TOP WRAP
   .top-wrap {
@@ -80,6 +89,7 @@
     transition: var(--transition);
     box-shadow: var(--box-shadow-lg);
     overflow:auto;
+    padding-right:16px;
 
     &.open-nav {
       visibility: visible;
@@ -100,7 +110,7 @@
             transform: rotate(180deg);
           }
         }
-      }
+      }     
     }
 
     .expandable {
