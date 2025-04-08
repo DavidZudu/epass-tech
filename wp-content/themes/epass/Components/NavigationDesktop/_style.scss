@@ -100,7 +100,9 @@
       }
     }
   }
-  
+  .sub-menu:not(.level-0){
+    padding-left:16px;
+  }
   .sub-menu.level-1{
     position:absolute;
     top:100%;
