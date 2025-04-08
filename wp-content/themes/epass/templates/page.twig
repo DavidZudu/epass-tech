@@ -1,7 +1,13 @@
 {% extends 'templates/_document.twig' %}
 
 {% block content %}
-  {% for component in post.meta('pageComponents') %}
-    {{ renderComponent(component) }}
-  {% endfor %}
+    {% for component in post.meta('headerComponents') %}
+        {{ renderComponent(component) }}
+    {% endfor %}
+    {% if post.meta('headerComponents')|length == 0 %}
+        {{ renderComponent('LayoutPageHeaderBasic') }}
+    {% endif %}
+    {% for component in post.meta('pageComponents') %}
+        {{ renderComponent(component) }}
+    {% endfor %}
 {% endblock %}
