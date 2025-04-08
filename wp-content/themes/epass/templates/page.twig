@@ -5,7 +5,7 @@
         {{ renderComponent(component) }}
     {% endfor %}
     {% if post.meta('headerComponents')|length == 0 %}
-        {{ renderComponent('LayoutPageHeaderBasic') }}
+        {{ renderComponent('LayoutBasicHeader') }}
     {% endif %}
     {% for component in post.meta('pageComponents') %}
         {{ renderComponent(component) }}

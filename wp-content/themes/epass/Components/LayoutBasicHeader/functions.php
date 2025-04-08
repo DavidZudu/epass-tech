@@ -1,10 +1,10 @@
 <?php
 
-namespace Flynt\Components\LayoutPageHeaderBasic;
+namespace Flynt\Components\LayoutBasicHeader;
 
 use Flynt\FieldVariables;
 
-add_filter('Flynt/addComponentData?name=LayoutPageHeaderBasic', function ($data) {
+add_filter('Flynt/addComponentData?name=LayoutBasicHeader', function ($data) {
     if (isset($data['options']['sectionAnchor'])) {
         $data['options']['sectionAnchorLabel'] = $data['options']['sectionAnchor'];
         $data['options']['sectionAnchor'] = preg_replace('/[^A-Za-z0-9]/', '-', strtolower($data['options']['sectionAnchor']));
@@ -16,8 +16,8 @@ add_filter('Flynt/addComponentData?name=LayoutPageHeaderBasic', function ($data)
 function getACFLayout()
 {
     return [
-        'name' => 'LayoutPageHeaderBasic',
-        'label' => __('Layout: Page Header', 'flynt'),
+        'name' => 'LayoutBasicHeader',
+        'label' => __('Layout: Basic Header', 'flynt'),
         'sub_fields' => [
             [
                 'label' => __('Content', 'flynt'),
