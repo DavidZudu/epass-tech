@@ -1,0 +1,132 @@
+[name="NavigationDesktop"] {
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  display: none;
+
+  @media screen and (min-width: 992px) {
+    display: block;
+  }
+  ul {
+    @extend.list-reset;
+    li {
+      &.button {
+        all: unset; /* removes almost all styles */
+        a {
+          @extend.button;
+        }
+      }
+    }
+  }
+  a {
+    @extend.invert;
+  }
+  // TOP WRAP
+  .top-wrap {
+    height: 80px;
+    transition: var(--transition);
+    backdrop-filter: blur(4px);
+    border-bottom: var(--border);
+    padding-right: 16px;
+    .container {
+      display: flex;
+      gap: 80px;
+      height: 100%;
+      padding-inline: 80px;
+    }
+    .at-top & {
+      background: 0;
+      backdrop-filter: blur(0px);
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0px;
+      .nav-toggle {
+        border: none;
+        background: none;
+        border-radius: 0;
+        padding: 16px;
+        width: 60px;
+        flex: 0 0 auto;
+        height: 100%;
+        svg > * {
+          stroke: var(--color-text);
+        }
+      }
+      img {
+        display: block;
+        height: 48px;
+      }
+    }
+    .extras-nav {
+      display: flex;
+      margin-left: auto;
+      padding-right: 8px;
+      .button {
+        margin: 0;
+      }
+      ul {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+    }
+  }
+
+ .primary-nav {
+  > ul {
+    display:flex;
+    height:100%;
+    align-items:center;
+    gap:40px;
+    > li.menu-item-has-children{
+      position: relative;
+      display:flex;
+      align-items: center;
+      &:after {
+        content:"";
+        @extend .caret;
+        margin-left:8px;
+      }
+      &:hover,&:focus,&:focus-within {
+        .sub-menu.level-1 {
+          visibility:visible;
+          opacity:1;
+          transform:translateY(16px);
+        }
+      }
+    }
+  }
+  
+  .sub-menu.level-1{
+    position:absolute;
+    top:100%;
+    left:0;
+    width:300px;
+    background:white;
+    box-shadow:var(--box-shadow-lg);
+    border-radius:8px;
+    padding:32px;
+    transform:translateY(40px);
+    transition:var(--transition);
+    opacity:0;
+    visibility:hidden;
+    &:before {
+      content:"";
+      position:absolute;
+      top:-16px;
+      left:0;
+      right:0;
+      height:16px;
+      background:0;
+    }   
+  }
+ }
+}
+
+.hide-overflow {
+  overflow: hidden !important;
+}

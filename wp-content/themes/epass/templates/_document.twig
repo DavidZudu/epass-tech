@@ -14,6 +14,7 @@
     {% block layout %}           
        
         {{renderComponent('NavigationMobile')}}
+        {{renderComponent('NavigationDesktop')}}
 
         <main id="mainContent" class="mainContent">
           {% if function('post_password_required') %}

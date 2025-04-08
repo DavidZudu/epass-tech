@@ -89,6 +89,15 @@ a {
   &:hover {
     background: rgb(from var(--color-primary) r g b / 10%);
   }
+  &.invert {
+    text-decoration: none;
+    &:hover {
+      text-decoration: underline;
+      text-underline-offset: 0.3ex;
+  text-decoration-thickness: 2px;
+  text-decoration-color: var(--color-primary);
+    }
+  }
 }
 
 hr {
