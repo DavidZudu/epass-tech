@@ -7,6 +7,39 @@ flynt-component {
   position: relative;
 }
 
+// Padding and Margin Classes
+$spaceamounts: (0, 8,16,24,32,40,48,56,64,72,80,120,200);
+$sides: (top, bottom, left, right, all);
+@each $space in $spaceamounts {
+  @each $side in $sides {
+    @if $side == "all" {
+      .m#{$space} {
+        margin: #{$space}px;
+      }
+
+      .p#{$space} {
+        padding: #{$space}px;
+      }
+    } @else {
+      .m#{str-slice($side, 0, 1)}#{$space} {
+        margin-#{$side}: #{$space}px !important;
+      }
+
+      .p#{str-slice($side, 0, 1)}#{$space} {
+        padding-#{$side}: #{$space}px !important;
+      }
+    }
+  }
+}
+
+// borders
+.border-top {
+  border-top: var(--border);
+}
+.border-bottom {
+  border-bottom: var(--border);
+}
+
 .list-reset {
   list-style: none;
   padding-left: 0;
@@ -19,6 +52,25 @@ flynt-component {
     list-style: none;
     padding-left: 0;
     margin: 0;
+  }
+}
+
+.img-fill {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 101%;
+  height: 101%;
+  object-fit: cover;
+  pointer-events: none; // optional: if it's decorative
+  user-select: none;
+
+  // IE11 fallback (optional)
+  @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+    object-fit: none;
+    max-width: none;
+    max-height: none;
   }
 }
 
@@ -98,8 +150,17 @@ flynt-component {
   margin: 0 auto;
   max-width: 1200px;
   @extend .h-padding;  
-  &--full {
+  &--small {
+    max-width:900px;
+  } 
+  &--large {
+    max-width:1600px;
+  } 
+  &--xlarge {
     max-width:1920px;
+  } 
+  &--full {
+    max-width:100%;
   } 
 }
 

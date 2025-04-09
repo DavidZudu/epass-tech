@@ -1,22 +1,25 @@
-flynt-component[name='BlockImageText'] {
-  @media (min-width: 768px-horizontal) {
-    .container {
-      align-items: center;
-      display: flex;
-      gap: var(--column-gap);
-      justify-content: space-around;
-
-      > * {
-        flex-basis: 50%;
-        margin-block-start: 0;
+flynt-component[name="BlockImageText"] {
+  .container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--gap);
+    @media screen and (min-width: 992px) {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+  .image {
+    position: relative;
+    overflow: hidden;
+    @media screen and (max-width: 992px) {
+      img {
+        all: unset;
       }
-
-      &[data-image-position='left'] {
-        flex-direction: row;
-      }
-
-      &[data-image-position='right'] {
-        flex-direction: row-reverse;
+    }
+  }
+  &.image-right {
+    .image {
+      @media screen and (min-width: 992px) {
+       order:2;
       }
     }
   }

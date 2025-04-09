@@ -34,11 +34,98 @@ function setSectionContent()
                         ],
                     ],
                 ],
-            ],
-        
-        
+            ],     
     ];
 }
+function setContainerSize($default = '')
+{
+    return [
+        'label' => __('Container Size', 'flynt'),
+        'name' => 'containerSize',
+        'type' => 'radio',
+        'layout' => 'horizontal',
+        'default_value' => $default,
+        'choices' => [
+            'container--small' => 'Small',
+            '' => 'Regular',
+            'container--large' => 'Large',
+            'container--xlarge' => 'Extra Large',
+            'container--full' => 'Full',
+        ],
+        'instructions' => __(
+            'Select the size of the content container',
+            'flynt'
+        ),
+    ];
+}
+function setPadding($default = ['top','bottom'])
+{
+    return [
+        'label' => __('Padding', 'flynt'),
+        'name' => 'padding',
+        'type' => 'checkbox',
+        'layout' => 'horizontal',
+        'return_value' => 'value',
+        'default_value' => $default,
+        'choices' => [
+            'top' => 'Top',
+            'bottom' => 'Bottom',
+        ],
+    ];
+}
+function setBorders($default = ['bottom'])
+{
+    return [
+        'label' => __('Borders', 'flynt'),
+        'name' => 'borders',
+        'type' => 'checkbox',
+        'layout' => 'horizontal',
+        'return_value' => 'value',
+        'default_value' => $default,
+        'choices' => [
+            'top' => 'Top',
+            'bottom' => 'Bottom',
+        ],
+    ];
+}
+function setCTAs($wrapper = '100')
+{
+    return [
+        'label' => __('Calls To Action', 'flynt'),
+        'name' => 'ctaLinks',
+        'type' => 'repeater',
+        'layout' => 'block',
+        'button_label' => 'Add Button',
+        'sub_fields' => [
+            [
+                'label' => __('CTA', 'flynt'),
+                'name' => 'cta',
+                'type' => 'link',
+                'wrapper'=> [
+                    'width'=>'60'
+                ]
+            ],
+            [
+                'label' => __('Button Style', 'flynt'),
+                'name' => 'style',
+                'type' => 'radio',
+                'layout' => 'horizontal',
+                'default_value' => '',
+                'choices' => [
+                    '' => 'Default',
+                    'light' => 'Light',
+                ],
+                'wrapper'=> [
+                    'width'=>'40'
+                ]
+            ],
+        ],
+        'wrapper' => [
+            'width' => $wrapper,
+        ],
+    ];
+}
+
 
 /// FLYNT FIELDS ////
 
