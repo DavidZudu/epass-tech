@@ -1,7 +1,7 @@
-<flynt-component name="BlockWysiwyg" class="componentSpacing" {{ options.theme ? 'data-theme="' ~ options.theme ~ '"' }}>
-  <div class="container">
-    <div class="content" data-size="{{ options.size }}" data-align="{{ options.align }}" data-text-align="{{ options.textAlign }}">
-      {{ contentHtml|e('wp_kses_post') }}
+<flynt-component name="BlockWysiwyg" class="componentSpacing {{'top' in options.padding ? '' : 'pt0'}} {{'bottom' in options.padding ? '' : 'pb0'}} {{'top' in options.borders ? 'border-top'}} {{'bottom' in options.borders ? 'border-bottom'}}">
+  <div class="container {{options.containerSize}}">
+    <div class="content">
+      {{ contentHtml }}
     </div>
   </div>
 </flynt-component>

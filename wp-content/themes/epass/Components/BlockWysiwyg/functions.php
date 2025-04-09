@@ -38,10 +38,9 @@ function getACFLayout(): array
                 'type' => 'group',
                 'layout' => 'row',
                 'sub_fields' => [
-                    FieldVariables\getTheme(),
-                    FieldVariables\getSize(),
-                    FieldVariables\getAlignment(),
-                    FieldVariables\getTextAlignment()
+                    FieldVariables\setContainerSize(),
+                    FieldVariables\setPadding(),
+                    FieldVariables\setBorders(),
                 ]
             ]
         ]

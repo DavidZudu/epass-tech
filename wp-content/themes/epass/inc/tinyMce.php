@@ -157,7 +157,7 @@ function getConfig(): array
     return [
         'blockformats' => [
             __('Paragraph', 'flynt') => 'p',
-            __('Heading 1', 'flynt') => 'h1',
+            // __('Heading 1', 'flynt') => 'h1',
             __('Heading 2', 'flynt') => 'h2',
             __('Heading 3', 'flynt') => 'h3',
             __('Heading 4', 'flynt') => 'h4',
@@ -170,35 +170,51 @@ function getConfig(): array
                 'icon' => '',
                 'items' => [
                     [
-                        'title' => __('Heading 1', 'flynt'),
+                        'title' => __('Heading 1 style', 'flynt'),
                         'classes' => 'h1',
                         'selector' => '*'
                     ],
                     [
-                        'title' => __('Heading 2', 'flynt'),
+                        'title' => __('Heading 2 style', 'flynt'),
                         'classes' => 'h2',
                         'selector' => '*'
                     ],
                     [
-                        'title' => __('Heading 3', 'flynt'),
+                        'title' => __('Heading 3 style', 'flynt'),
                         'classes' => 'h3',
                         'selector' => '*'
                     ],
                     [
-                        'title' => __('Heading 4', 'flynt'),
+                        'title' => __('Heading 4 style', 'flynt'),
                         'classes' => 'h4',
                         'selector' => '*'
                     ],
                     [
-                        'title' => __('Heading 5', 'flynt'),
+                        'title' => __('Heading 5 style', 'flynt'),
                         'classes' => 'h5',
                         'selector' => '*'
                     ],
                     [
-                        'title' => __('Heading 6', 'flynt'),
+                        'title' => __('Heading 6 style', 'flynt'),
                         'classes' => 'h6',
                         'selector' => '*'
                     ],
+                ]
+            ],
+            [
+                'title' => 'Text Styles',
+                'icon' => '',
+                'items' => [
+                    [
+                        'title' => 'Lead text',
+                        'classes' => 'lead',
+                        'selector' => 'p'
+                    ],                   
+                    [
+                        'title' => 'Small text',
+                        'classes' => 'small',
+                        'selector' => 'p'
+                    ],                   
                 ]
             ],
             [
@@ -209,24 +225,9 @@ function getConfig(): array
                         'title' => __('Button', 'flynt'),
                         'classes' => 'button',
                         'selector' => 'a,button'
-                    ],
-                    [
-                        'title' => __('Button Outlined', 'flynt'),
-                        'classes' => 'button--outlined',
-                        'selector' => '.button'
-                    ],
-                    [
-                        'title' => __('Button Text', 'flynt'),
-                        'classes' => 'button--text',
-                        'selector' => '.button'
-                    ],
+                    ],                    
                 ]
             ],
-            [
-                'title' => __('Paragraph', 'flynt'),
-                'classes' => 'paragraph',
-                'selector' => '*'
-            ]
         ],
         'toolbars' => [
             'default' => [
@@ -237,6 +238,9 @@ function getConfig(): array
                     'italic',
                     'strikethrough',
                     'blockquote',
+                    'alignleft',
+                     'aligncenter',
+                      'alignright',
                     '|',
                     'bullist',
                     'numlist',
@@ -266,7 +270,7 @@ function getConfig(): array
                     'fullscreen'
                 ]
             ]
-        ],
+                ],
         'entities' => [
             '160' => 'nbsp',
             '173' => 'shy'
@@ -274,3 +278,6 @@ function getConfig(): array
         'entity_encoding' => 'named',
     ];
 }
+
+// add style sheet
+add_editor_style('editor-style.css' );
