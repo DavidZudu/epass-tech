@@ -41,7 +41,7 @@ function getACFLayout(): array
                 ],
             ],
             [
-                'label'        => __('Text', 'flynt'),
+                'label'        => __('Content', 'flynt'),
                 'name'         => 'contentHtml',
                 'type'         => 'wysiwyg',
                 'delay'        => 0,
