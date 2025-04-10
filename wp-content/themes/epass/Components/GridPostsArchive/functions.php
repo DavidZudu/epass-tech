@@ -12,28 +12,28 @@ add_filter('Flynt/addComponentData?name=GridPostsArchive', function (array $data
     $data['uuid'] ??= wp_generate_uuid4();
 
     $queriedObject = get_queried_object();
-    $manualSource = $data['manualSource'] ?? null;
+    $manualSource  = $data['manualSource'] ?? null;
 
     $manualPostType = null;
-    $manualTerm = null;
+    $manualTerm     = null;
 
     if (is_string($manualSource)) {
         if (str_starts_with($manualSource, 'postType:')) {
             $manualPostType = substr($manualSource, strlen('postType:'));
         } elseif (str_starts_with($manualSource, 'term:')) {
-            $termId = (int) substr($manualSource, strlen('term:'));
+            $termId     = (int) substr($manualSource, strlen('term:'));
             $manualTerm = get_term($termId);
         }
     }
 
     $postType = $manualTerm && $manualTerm->taxonomy
-        ? get_taxonomy($manualTerm->taxonomy)->object_type[0] ?? POST_TYPE
-        : ($manualPostType ?: get_post_type() ?: POST_TYPE);
+    ? get_taxonomy($manualTerm->taxonomy)->object_type[0] ?? POST_TYPE
+    : ($manualPostType ?: get_post_type() ?: POST_TYPE);
 
     $postTypeObject = get_post_type_object($postType);
 
     // Determine filter taxonomies
-    if (!empty($postTypeObject->filter) && is_array($postTypeObject->filter)) {
+    if (! empty($postTypeObject->filter) && is_array($postTypeObject->filter)) {
         $filterTaxonomies = $postTypeObject->filter;
     } else {
         $filterTaxonomies = [FILTER_BY_TAXONOMY];
@@ -48,9 +48,9 @@ add_filter('Flynt/addComponentData?name=GridPostsArchive', function (array $data
             'hide_empty' => true,
         ]);
 
-        if (!empty($terms) && !is_wp_error($terms)) {
+        if (! empty($terms) && ! is_wp_error($terms)) {
             $filterTerms = array_map(function ($term) use ($taxonomy, $queriedObject) {
-                $timberTerm = Timber::get_term($term);
+                $timberTerm           = Timber::get_term($term);
                 $timberTerm->isActive = false;
 
                 if (($queriedObject->taxonomy ?? null) === $taxonomy &&
@@ -79,10 +79,10 @@ add_filter('Flynt/addComponentData?name=GridPostsArchive', function (array $data
     if (is_home()) {
         $data['isHome'] = true;
         $data['title']  = $queriedObject->post_title ?? get_bloginfo('name');
-    } elseif (!is_archive() && $manualTerm) {
+    } elseif (! is_archive() && $manualTerm) {
         $data['title']       = $manualTerm->name ?? '';
         $data['description'] = $manualTerm->description ?? '';
-    } elseif (!is_archive() && $manualPostType) {
+    } elseif (! is_archive() && $manualPostType) {
         $data['title']       = $postTypeObject->label ?? '';
         $data['description'] = $postTypeObject->description ?? '';
     } else {
@@ -91,7 +91,7 @@ add_filter('Flynt/addComponentData?name=GridPostsArchive', function (array $data
     }
 
     // Fetch posts manually if needed
-    if (!is_archive() && !is_home() && ($manualPostType || $manualTerm)) {
+    if (! is_archive() && ! is_home() && ($manualPostType || $manualTerm)) {
         $queryArgs = [
             'post_type'      => $postType,
             'posts_per_page' => get_option('posts_per_page'),
@@ -112,24 +112,49 @@ add_filter('Flynt/addComponentData?name=GridPostsArchive', function (array $data
     return $data;
 });
 
-
-
 function getACFLayout(): array
 {
     return [
-        'name' => 'gridPostsArchive',
-        'label' => __('Grid: Posts Archive', 'flynt'),
-        'sub_fields' => [   
-            FieldVariables\setSectionContent(),                    
+        'name'       => 'gridPostsArchive',
+        'label'      => __('Grid: Posts Archive', 'flynt'),
+        'sub_fields' => [
             [
-                'label' => __('Manual Source (Post Type or Term)', 'flynt'),
-                'name' => 'manualSource',
-                'type' => 'select',
-                'allow_null' => 1,
-                'ui' => 1,
+                'label'     => __('Content', 'flynt'),
+                'name'      => 'contentTab',
+                'type'      => 'tab',
+                'placement' => 'top',
+                'endpoint'  => 0,
+            ],
+            FieldVariables\setSectionContent(),
+            [
+                'label'        => __('Manual Source (Post Type or Term)', 'flynt'),
+                'name'         => 'manualSource',
+                'type'         => 'select',
+                'allow_null'   => 1,
+                'ui'           => 1,
                 'instructions' => __('Select a post type or a taxonomy term to show posts from.', 'flynt'),
             ],
-        ]
+            [
+                'label'     => __('Options', 'flynt'),
+                'name'      => 'optionsTab',
+                'type'      => 'tab',
+                'placement' => 'top',
+                'endpoint'  => 0,
+            ],
+            [
+                'label'      => '',
+                'name'       => 'options',
+                'type'       => 'group',
+                'layout'     => 'row',
+                'sub_fields' => [
+                    FieldVariables\setColumns(),
+                    FieldVariables\setContainerSize(),
+                    FieldVariables\setPadding(),
+                    FieldVariables\setBorders(),
+
+                ],
+            ],
+        ],
     ];
 }
 

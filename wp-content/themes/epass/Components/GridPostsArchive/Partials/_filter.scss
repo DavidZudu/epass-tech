@@ -1,8 +1,17 @@
-.filter {
+.filter-group {
   display: flex;
-  flex-wrap: wrap;
-  gap: var(--flow-space);
-  justify-content: center;
-  list-style: none;
-  padding: 0;
+  gap:24px;
+  margin-bottom:24px;
+  ul {
+    @extend .list-reset;
+    display:flex;
+    gap:16px;
+    li.active {
+      // background:red;
+      a {
+        text-decoration: none;
+        font-weight:bold;
+      }
+    }
+  }
 }

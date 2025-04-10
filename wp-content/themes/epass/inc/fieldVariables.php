@@ -88,6 +88,27 @@ function setBorders($default = ['bottom'])
         ],
     ];
 }
+function setColumns($default = '3')
+{
+    return [
+        'label' => __('Max Columns', 'flynt'),
+        'name' => 'maxColumns',
+        'layout' => 'horizontal',
+        'type' => 'radio',
+        'choices' => [
+            '1' => 'One',
+            '2' => 'Two',
+            '3' => 'Three',
+            '4' => 'Four',
+        ],
+        'default_value' => $default,
+        'instructions' => __(
+            'Select the max number of columns. Columns will reduce for smaller screen sizes',
+            'flynt'
+        ),     
+    ];
+}
+
 function setCTAs($wrapper = '100')
 {
     return [

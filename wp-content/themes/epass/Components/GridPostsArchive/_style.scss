@@ -1,19 +1,36 @@
-flynt-component[name='GridPostsArchive'] {
+flynt-component[name="GridPostsArchive"] {
+  // Core .posts grid styling
   .posts {
-    --grid-columns: 1;
     display: grid;
-    gap: var(--flow-space);
-    grid-template-columns: repeat(var(--grid-columns), 1fr);
-    justify-content: center;
+    gap: var(--gap);
+    grid-template-columns: repeat(1, 1fr);
     list-style: none;
     padding: 0;
-
-    @media (min-width: 768px) {
-      --grid-columns: 2;
+    @media screen and (min-width: 600px) {
+      &.columns-5,
+      &.columns-4,
+      &.columns-3,
+      &.columns-2 {
+        grid-template-columns: repeat(2, 1fr);
+      }
     }
-
-    @media (min-width: 768px-horizontal) {
-      --grid-columns: 3;
+    @media screen and (min-width: 992px) {
+      &.columns-5,
+      &.columns-4,
+      &.columns-3 {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+    @media screen and (min-width: 1200px) {
+      &.columns-5,
+      &.columns-4 {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+    @media screen and (min-width: 1500px) {
+      &.columns-5 {
+        grid-template-columns: repeat(5, 1fr);
+      }
     }
   }
 
@@ -22,9 +39,6 @@ flynt-component[name='GridPostsArchive'] {
   }
 
   .post {
-    inline-size: var(--grid-item-width);
-    max-inline-size: var(--grid-item-max-width);
-
     .link {
       block-size: 100%;
       color: currentColor;
@@ -38,6 +52,11 @@ flynt-component[name='GridPostsArchive'] {
       color: var(--color-text);
       flex-grow: 1;
       margin-block-start: 0;
+      .terms {
+        display:flex;
+        gap:8px;
+        flex-wrap:wrap;
+      }
     }
 
     .footer {
@@ -55,6 +74,6 @@ flynt-component[name='GridPostsArchive'] {
     }
   }
 
-  @import 'Partials/filter';
-  @import 'Partials/pagination';
+  @import "Partials/filter";
+  @import "Partials/pagination";
 }
