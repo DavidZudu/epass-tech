@@ -15,6 +15,7 @@
        
         {{renderComponent('NavigationMobile')}}
         {{renderComponent('NavigationDesktop')}}
+        {{fn('custom_breadcrumbs')}}
 
         <main id="mainContent" class="mainContent">
           {% if function('post_password_required') %}

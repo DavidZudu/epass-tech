@@ -1,7 +1,7 @@
 <flynt-component name="LayoutBasicHeader" class="componentSpacing {{largeHeader ? 'lg'}}">
     <div class="container">
         <div class="content">
-            <h1 class="{{ fn('is_front_page') ? 'h0'}}">{{pageTitle ? pageTitle : post.title}}</h1>
+            <h1 class="">{{ pageTitle ?? post.title ?? fn('get_the_archive_title') }}</h1>
         </div>
     </div>
 </flynt-component>

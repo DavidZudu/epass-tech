@@ -1,8 +1,22 @@
 {% extends 'templates/_document.twig' %}
 
 {% block content %}
-  {{ renderComponent('GridPostsArchive', {posts: posts}) }}
-  {% for component in post.meta('pageComponents') %}
-    {{ renderComponent(component) }}
-  {% endfor %}
+
+    {% if fn('is_home')  %}
+        {% for component in post.meta('headerComponents') %}
+            {{ renderComponent(component) }}
+        {% endfor %}
+        {% if post.meta('headerComponents')|length == 0 %}
+            {{ renderComponent('LayoutBasicHeader') }}
+        {% endif %}
+        {% for component in post.meta('pageComponents') %}
+            {{ renderComponent(component) }}
+        {% endfor %}
+    {% else %}
+        {% if post.meta('headerComponents')|length == 0 %}
+            {{ renderComponent('LayoutBasicHeader') }}
+        {% endif %}
+        {{ renderComponent('GridPostsArchive', {posts: posts,options: {maxColumns: '3', padding:['top','bottom'],borders:['bottom']} }) }}
+    {% endif %}
+
 {% endblock %}

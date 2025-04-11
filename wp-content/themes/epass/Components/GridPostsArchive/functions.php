@@ -91,7 +91,10 @@ add_filter('Flynt/addComponentData?name=GridPostsArchive', function (array $data
     }
 
     // Fetch posts manually if needed
-    if (! is_archive() && ! is_home() && ($manualPostType || $manualTerm)) {
+    $isPostsPage         = (int) get_option('page_for_posts') === (int) get_the_ID();
+    $shouldQueryManually = $isPostsPage || (! is_archive() && ! is_home());
+
+    if ($shouldQueryManually && ($manualPostType || $manualTerm)) {
         $queryArgs = [
             'post_type'      => $postType,
             'posts_per_page' => get_option('posts_per_page'),
