@@ -5,3 +5,12 @@
         </div>
     </div>
 </flynt-component>
+{% if not function('is_front_page') %}
+    <nav class="breadcrumbs">
+        <div class="container">
+            {% if function('bcn_display') %}
+                {{ function('bcn_display') }}
+            {% endif %}
+        </div>
+    </nav>
+{% endif %}

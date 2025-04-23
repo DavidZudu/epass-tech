@@ -1,0 +1,10 @@
+.breadcrumbs {
+    border-bottom:var(--border);
+    padding-block:4px;
+    @extend .small;
+    .container {
+        display:flex;
+        flex-wrap:wrap;
+        gap:8px;
+    }
+}
