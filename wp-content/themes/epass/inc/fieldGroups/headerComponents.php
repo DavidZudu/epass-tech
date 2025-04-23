@@ -20,7 +20,7 @@ add_action('Flynt/afterRegisterComponents', function () {
                 'button_label' => __('Add Component', 'flynt'),
                 'layouts' => [
                    
-                    // Components\LayoutPageHeader\getACFLayout(),
+                    Components\LayoutHeroHeader\getACFLayout(),
                 ]
             ]
         ],
