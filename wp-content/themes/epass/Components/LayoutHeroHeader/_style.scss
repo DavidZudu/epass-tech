@@ -1,24 +1,83 @@
 [name="LayoutHeroHeader"] {
   position: relative;
-  border-bottom:var(--border);
-  text-align:center;
-  display:flex;
+  border-bottom: var(--border);
+  text-align: center;
+  display: flex;
   align-items: center;
-  padding-top:120px;
-  overflow:hidden;
+  padding-top: 40px;
+  overflow: hidden;
+  &.has-media {
+    padding-bottom: calc(0px + 120px);
+  }
+  @media screen and (min-width: 992px) {
+    padding-top: 120px;
+    &.has-media {
+      padding-bottom: calc(0px + 240px);
+    }
+  }
   .content {
-    margin-bottom:40px;
+    margin-bottom: 40px;
+    display: flex;
+    flex-direction: column;
+    .pre-title {
+      order: -1;
+      @media screen and (min-width: 992px) {
+        font-size: 1.5rem;
+      }
+    }
+  }
+  .ctas {
   }
 }
 
 .gradient-disc {
-  position:absolute;
-  bottom:0;
-  right:25%;
-  transform: translate(50%,50%);
-  height:200%;
-  opacity:0.3;
-  &:nth-of-type(2){
-    right:75%;
+  position: absolute;
+  bottom: 33%;
+  right: 25%;
+  transform: translate(50%, 50%);
+  height: 200%;
+  max-height: none;
+  opacity: 0.3;
+  &:nth-of-type(2) {
+    right: 75%;
+  }
+  @media screen and (min-width: 992px) {
+    bottom: 0;
+  }
+}
+
+.hero-header-media {
+  margin-top: -120px;
+  @extend .v-padding;
+  padding-top: 0;
+  border-bottom: var(--border);
+  @media screen and (min-width: 992px) {
+    margin-top: -240px;
+  }
+  .wrap {
+    border-radius: 8px;
+    box-shadow: var(--box-shadow-lg);
+    overflow: hidden;
+  }
+  .logos {
+    margin-top: 40px;
+    text-align: center;
+    .logo-label {
+      display:block;
+      @extend.small;
+      margin-bottom:24px;
+    }
+    .logo-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      margin-top: 16px;
+      gap: 16px 32px;
+      
+      img {
+        height: 35px;
+      }
+    }
   }
 }

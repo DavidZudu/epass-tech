@@ -23,8 +23,7 @@
   // TOP WRAP
   .top-wrap {
     height: 60px;
-    transition: var(--transition);
-    backdrop-filter: blur(4px);
+    background:white;
     border-bottom: var(--border);
     padding-right: 16px;
     .container {
