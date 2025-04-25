@@ -1,10 +1,23 @@
 <flynt-component name="BlockImageText" class="componentSpacing {{'image-'~imagePosition}} {{'top' in options.padding ? '' : 'pt0'}} {{'bottom' in options.padding ? '' : 'pb0'}} {{'top' in options.borders ? 'border-top'}} {{'bottom' in options.borders ? 'border-bottom'}}">
     <div class="container {{options.containerSize}}">
         <div class="image">
-            <img loading="lazy" class="{{options.keepAspect ? '' : 'img-fill' }}" src="{{ image.src }}" sizes="100vw" srcset="{{ image.srcset }}" alt="{{ image.alt }}"/>
+         <img class="gradient-disc" src="{{theme.link}}/assets/images/purple-radial.svg" alt="">
+                <img class="gradient-disc" src="{{theme.link}}/assets/images/green-radial.svg" alt="">
+            <div class="image-wrap">
+               
+                <img loading="lazy" class="{{options.keepAspect ? '' : 'img-fill' }}" src="{{ image.src }}" sizes="100vw" srcset="{{ image.srcset }}" alt="{{ image.alt }}"/>
+            </div>
         </div>
-        <div class="content">
+        <div class="content v-padding-sm">
             {{contentHtml}}
+            {% if ctaLinks %}
+                <div class="ctas">
+                    {% for btn in ctaLinks %}
+                        <a href="{{btn.cta.url}}" target="{{btn.cta.target}}" rel="noopener noreferrer" class="button {{btn.style}}">{{btn.cta.title}}
+                        </a>
+                    {% endfor %}
+                </div>
+            {% endif %}
         </div>
     </div>
 </flynt-component>

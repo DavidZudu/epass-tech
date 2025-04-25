@@ -51,6 +51,7 @@ function getACFLayout(): array
                     'width' => 60,
                 ],
             ],
+            FieldVariables\setCTAs(),
             [
                 'label'     => __('Options', 'flynt'),
                 'name'      => 'optionsTab',

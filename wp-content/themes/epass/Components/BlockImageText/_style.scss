@@ -3,23 +3,94 @@ flynt-component[name="BlockImageText"] {
     display: grid;
     grid-template-columns: 1fr;
     gap: var(--gap);
+
     @media screen and (min-width: 992px) {
       grid-template-columns: repeat(2, minmax(0, 1fr));
     }
   }
+
   .image {
     position: relative;
     overflow: hidden;
+    border: var(--border);
+    border-radius: 8px;
+    padding: 24px 24px 0 0;
+
+    img {
+      display: block;
+    }
+
+    .gradient-disc {
+      position: absolute;
+      top: 0;
+      left: 0;
+      transform: translate(-50%, -50%);
+      width: 100%;
+      max-height: none;
+      opacity: 0.3;
+
+      &:nth-of-type(2) {
+        top: 100%;
+        left: 100%;
+      }
+    }
+
+    .image-wrap {
+      position: relative;
+      border-top: var(--border);
+      border-right: var(--border);
+      border-radius: 0 8px 0 0;
+      overflow: hidden;
+
+      @media screen and (min-width: 992px) {
+        position: absolute;
+        top: 24px;
+        left: 0;
+        right: 24px;
+        bottom: 0;
+      }
+    }
+
     @media screen and (max-width: 992px) {
       img {
-        all: unset;
+        position: relative;
+        transform: none;
+        left: auto;
       }
     }
   }
+
   &.image-right {
     .image {
+      padding: 24px 0 0 24px;
+
       @media screen and (min-width: 992px) {
-       order:2;
+        order: 2;
+      }
+
+      .gradient-disc {
+        top: 0;
+        left: 100%;
+
+        &:nth-of-type(2) {
+          top: 100%;
+          left: 0;
+        }
+      }
+
+      .image-wrap {
+        border: 0;
+        border-top: var(--border);
+        border-left: var(--border);
+        border-radius: 8px 0 0 0;
+
+        @media screen and (min-width: 992px) {
+          position: absolute;
+          top: 24px;
+          left: 24px;
+          right: 0;
+          bottom: 0;
+        }
       }
     }
   }
