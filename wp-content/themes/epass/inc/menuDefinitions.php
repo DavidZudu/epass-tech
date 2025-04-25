@@ -9,3 +9,7 @@ register_nav_menus([
   register_nav_menus([
     'navigation_primary_extras' => __('Navigation Primary Extras', 'flynt')
   ]); 
+
+  register_nav_menus([
+    'menu_footer_bottom' => __('Footer Bottom Menu', 'flynt'),
+]);   

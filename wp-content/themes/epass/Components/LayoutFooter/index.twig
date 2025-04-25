@@ -1,0 +1,44 @@
+<flynt-component name="LayoutFooter" class=" {{largeHeader ? 'lg'}}">
+<img class="gradient-disc" src="{{theme.link}}/assets/images/purple-radial.svg" alt="">
+    <img class="gradient-disc" src="{{theme.link}}/assets/images/green-radial.svg" alt="">
+    <div class="container componentSpacing">
+        <a href="{{ site.link }}" class="brand">
+            {{logo}}
+        </a>
+        <div class="contact-links">
+            {% if  contactOptions.contactEmail.url  %}
+                <a class="white" href="{{ contactOptions.contactEmail.url }}">
+                    {{ contactOptions.contactEmail.title }}
+                </a>
+            {% endif %}
+            {% if contactOptions.contactPhone.url %}
+                <a class="white" href="{{ contactOptions.contactPhone.url }}">
+                    {{ contactOptions.contactPhone.title }}
+                </a>
+            {% endif %}
+        </div>
+
+        <div class="socials">
+            {% for social in contactOptions.socials %}
+                <a class="button translucent circle" href="{{ social.link.url }}" {{ social.link.target == '_blank' ? 'target="_blank" rel="noopener noreferrer"' }} title="{{social.link.title}}">
+                    {{ social.icon }}
+                </a>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="bottom">
+        <span>&copy;
+            {{ "now"|date("Y") }}
+            {{copyrightText}}</span>
+        <span>-</span>
+        <nav class="bottom-nav">
+            {% if menuFooterBottom %}
+                {% for item in menuFooterBottom.items %}
+                    <a class="white {{ item.classes|join(' ') }}" href="{{ item.link }}" {{ item.target == '_blank' ? 'target="_blank" rel="noopener noreferrer"' }}>
+                        {{ item.icon ? '<i class="' ~ item.icon ~ '"></i>' : item.title }}
+                    </a>
+                {% endfor %}
+            {% endif %}
+        </nav>
+    </div>
+</flynt-component>

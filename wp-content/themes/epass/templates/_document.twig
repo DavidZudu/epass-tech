@@ -14,9 +14,7 @@
         {% block layout %}
 
             {{renderComponent('NavigationMobile')}}
-            {{renderComponent('NavigationDesktop')}}
-            
-
+            {{renderComponent('NavigationDesktop')}}          
 
             <main id="mainContent" class="mainContent">
                 {% if function('post_password_required') %}
@@ -32,6 +30,7 @@
                 {% endif %}
             </main>
 
+            {{renderComponent('LayoutFooter')}}
 
         {% endblock %}
         <div class="wpFooter">
