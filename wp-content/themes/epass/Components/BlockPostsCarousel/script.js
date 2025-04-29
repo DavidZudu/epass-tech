@@ -10,6 +10,10 @@ import Swiper from 'swiper/bundle';
       nextEl: '.button-next',
       prevEl: '.button-prev',
     },
+    pagination: {
+      el: '.swiper-pagination', // <- add this!
+      clickable: true,          // <- makes dots clickable
+    },
     breakpoints: {
       768: {
         slidesPerView: 2,

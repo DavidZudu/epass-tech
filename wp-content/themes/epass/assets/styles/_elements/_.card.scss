@@ -1,6 +1,7 @@
 .card {
   display: grid;
   grid-template-columns: repeat(1, 1fr);
+  grid-template-rows: auto 1fr;
   border: var(--border);
   border-radius: 8px;
   box-shadow: var(--box-shadow-lg);

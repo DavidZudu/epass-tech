@@ -1,54 +1,71 @@
 flynt-component[name="BlockPostsCarousel"] {
-  overflow:hidden;
-  .intro-content {  
-    display:grid;
-    gap:40px;
+  overflow: hidden;
+  .intro-content {
+    display: grid;
+    gap: 40px;
     grid-template-columns: 1fr;
-    @media screen and (min-width:768px) {
+    @media screen and (min-width: 768px) {
       grid-template-columns: minmax(0, 800px) 1fr;
- 
     }
   }
   .post-carousel {
-    overflow:visible;
+    overflow: visible;
   }
   .swiper-wrapper {
-  display: grid;
-  grid-auto-flow: column;
-  align-items: stretch;
-}
+    display: grid;
+    grid-auto-flow: column;
+    align-items: stretch;
+  }
 
-.swiper-slide {
-  height: auto;
-  opacity:0;
-  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
-  &.swiper-slide-prev {
-    transform:translateX(50%) scale(0.7);
-    // z-index:-1;
+  .swiper-slide {
+    height: auto;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+    &.swiper-slide-prev {
+      transform: translateX(50%) scale(0.7);
+      // z-index:-1;
+    }
+    &.swiper-slide-visible {
+      transform: none;
+      opacity: 1;
+    }
+    .card {
+      height: 100%;
+    }
   }
-  &.swiper-slide-visible {
-    transform:none;
-    opacity:1;
-  }
-  .card {
-    height:100%;
-  }
-}
   .slider-nav {
     justify-self: end; /* horizontally align to the right */
-    align-self: end; 
-    margin-bottom:24px;
-    gap:8px;
-    display:none;
-    @media screen and (min-width:768px) {
-    display:flex;
+    align-self: end;
+    margin-bottom: 24px;
+    gap: 8px;
+    display: none;
+    @media screen and (min-width: 768px) {
+      display: flex;
     }
     button {
       position: relative;
-      
+
       &:after {
-        content:none;
+        content: none;
       }
+    }
+  }
+  .swiper-pagination {
+    position: relative;
+    display:flex;
+    gap:8px;
+    top:0;
+    margin-top:24px;
+    .swiper-pagination-bullet {
+      width:8px;
+      height:8px;
+      border-radius:99px;
+      transition:var(--transition);
+      background:var(--color-secondary);
+    }
+    .swiper-pagination-bullet-active {
+     
+      width:32px;
     }
   }
   .posts {
@@ -88,8 +105,6 @@ flynt-component[name="BlockPostsCarousel"] {
   .posts-empty {
     text-align: center;
   }
-
-
 
   @import "Partials/filter";
   @import "Partials/pagination";
