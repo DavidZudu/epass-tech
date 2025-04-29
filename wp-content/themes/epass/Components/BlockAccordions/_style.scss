@@ -1,0 +1,67 @@
+flynt-component[name="BlockAccordions"] {
+}
+
+.dc-accordion {
+  margin-bottom: 20px;
+  transition: 0.2s;
+  counter-increment: step-counter;
+  border: var(--border);
+  border-radius: 8px;
+  &:hover {
+    background: var(--color-light);
+    summary {
+      &:before {
+        color: var(--color-primary);
+      }
+    }
+  }
+  summary {
+    position: relative;
+    list-style: none;
+    cursor: pointer;
+    padding: 16px 32px;
+    padding-right: 80px;
+    font-weight: bold;
+    margin-bottom: 0;
+    &:hover {
+      text-decoration: underline;
+      text-underline-offset: 0.3ex;
+  text-decoration-thickness: 2px;
+  text-decoration-color: var(--color-primary);
+    }
+    i {
+      position:absolute;
+      top:1.2em;
+      right:32px;
+      transition: var(--transition);
+    }
+  }
+  .content {
+    padding: 30px;
+    padding-top: 0;
+    opacity: 0;
+    transition: all 0.2s;
+    *:last-child {
+      margin-bottom: 0;
+    }
+  }
+  &[open] {
+    background: var(--color-light);
+    > summary {
+     i {
+      transform:rotate(180deg);
+     }
+    }
+    .content {
+      opacity: 1;
+    }
+  }
+  &.numbered {
+    summary {
+      &:before {
+        content: "0" counter(step-counter);
+        transform: none !important;
+      }
+    }
+  }
+}

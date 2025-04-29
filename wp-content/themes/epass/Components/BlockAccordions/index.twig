@@ -1,0 +1,19 @@
+<flynt-component name="BlockAccordions" class="componentSpacing {{'image-'~imagePosition}} {{'top' in options.padding ? '' : 'pt0'}} {{'bottom' in options.padding ? '' : 'pb0'}} {{'top' in options.borders ? 'border-top'}} {{'bottom' in options.borders ? 'border-bottom'}}">
+    <div class="container {{options.containerSize}}">
+        {% if sectionContent %}
+            <div class="intro-content">
+                <div class="intro">{{sectionContent}}</div>
+            </div>
+        {% endif %}
+        
+        {% for acc in accordions %}
+            <details class="dc-accordion" {{acc.isOpen ? 'open' }}>
+                <summary>{{acc.title}}<i class="fa-solid fa-chevron-down"></i></summary>
+                <div class="content">
+                    {{acc.content}}
+                </div>
+            </details>
+        {% endfor %}
+
+    </div>
+</flynt-component>

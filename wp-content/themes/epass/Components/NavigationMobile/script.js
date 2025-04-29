@@ -38,7 +38,9 @@ const closeNav = () => {
 document.querySelectorAll('.menu-item-has-children').forEach((item, index) => {
   const button = item.querySelector('.nav-button');
   const submenuWrapper = item.querySelector('.submenu-wrapper');
-
+if (!button) {
+  return;
+}
   // Generate unique IDs
   const btnId = `nav-toggle-${index}`;
   const submenuId = `submenu-${index}`;
