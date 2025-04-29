@@ -24,6 +24,7 @@ add_action('Flynt/afterRegisterComponents', function (): void {
                     Components\BlockWysiwyg\getACFLayout(),
                     // Components\GridImageText\getACFLayout(),
                     Components\GridPostsArchive\getACFLayout(),
+                    Components\BlockPostsCarousel\getACFLayout(),
                     // Components\ListComponents\getACFLayout(),
                     // Components\SliderImages\getACFLayout(),
                     // Components\ReusableComponent\getACFLayout(),

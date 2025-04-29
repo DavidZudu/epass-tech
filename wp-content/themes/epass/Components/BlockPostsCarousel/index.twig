@@ -1,0 +1,56 @@
+<flynt-component name="BlockPostsCarousel" load:on="visible" class="componentSpacing {{'image-'~imagePosition}} {{'top' in options.padding ? '' : 'pt0'}} {{'bottom' in options.padding ? '' : 'pb0'}} {{'top' in options.borders ? 'border-top'}} {{'bottom' in options.borders ? 'border-bottom'}}">
+    <div class="container{{ options.containerSize }}">
+
+       
+            <div class="intro-content">
+                <div class="intro">{{sectionContent}}</div>
+                <nav class="slider-nav">
+                <button class="button-prev button translucent circle">
+                  <i class="fa-light fa-arrow-left"></i>
+                </button>
+                <button class="button-next button translucent circle"><i class="fa-light fa-arrow-right"></i></button>
+                </nav>
+            </div>
+   
+
+        {% if posts|length > 0 %}
+        {# Swiper navigation #}
+                
+            <div class="swiper post-carousel">
+                <div class="swiper-wrapper">
+                    {% for post in posts %}
+                        <div class="swiper-slide">
+                            <a href="{{ post.link }}" class="card">
+                                <div class="image">
+                                    {% if post.thumbnail %}
+                                        <img loading="lazy" class="img-fill" src="{{ post.thumbnail.src }}" sizes="(max-width: 768px) 100vw, 780px" srcset="{{ post.thumbnail.srcset }}" alt="{{ post.thumbnail.alt ?? post.title }}"/>
+                                    {% endif %}
+                                    <span class="date pill" title="{{ post.date }}">
+                                        {{ fn('smartDate', post.date) }}
+                                    </span>
+                                </div>
+                                <div class="content">
+                                    {% set taxonomy = fn('getPostTermsbyPostId', post.ID) %}
+                                    {% set terms = post.terms(taxonomy) %}
+                                    {% if terms %}
+                                        <div class="terms mb16">
+                                            {% for term in terms %}
+                                                <span class="pill">{{ term.name }}</span>
+                                            {% endfor %}
+                                        </div>
+                                    {% endif %}
+                                    <h3 class="title h4" title="{{ post.title }}">{{ post.title }}</h3>
+                                </div>
+                            </a>
+                        </div>
+                    {% endfor %}
+                </div>
+
+                
+            </div>
+        {% else %}
+            <p class="posts-empty">No posts found.</p>
+        {% endif %}
+
+    </div>
+</flynt-component>

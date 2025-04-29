@@ -5,6 +5,7 @@
   'styles/base',
   'styles/helpers';
 
+  @import 'styles/_vendor/*.scss';
   @import 'styles/_elements/*.scss';
 
 // stylelint-disable-next-line scss/load-no-partial-leading-underscore, scss/at-import-partial-extension-disallowed-list

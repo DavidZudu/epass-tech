@@ -1,0 +1,17 @@
+.filter-group {
+  display: flex;
+  gap:24px;
+  margin-bottom:24px;
+  ul {
+    @extend .list-reset;
+    display:flex;
+    gap:16px;
+    li.active {
+      // background:red;
+      a {
+        text-decoration: none;
+        font-weight:bold;
+      }
+    }
+  }
+}

@@ -1,0 +1,96 @@
+flynt-component[name="BlockPostsCarousel"] {
+  overflow:hidden;
+  .intro-content {  
+    display:grid;
+    gap:40px;
+    grid-template-columns: 1fr;
+    @media screen and (min-width:768px) {
+      grid-template-columns: minmax(0, 800px) 1fr;
+ 
+    }
+  }
+  .post-carousel {
+    overflow:visible;
+  }
+  .swiper-wrapper {
+  display: grid;
+  grid-auto-flow: column;
+  align-items: stretch;
+}
+
+.swiper-slide {
+  height: auto;
+  opacity:0;
+  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+  &.swiper-slide-prev {
+    transform:translateX(50%) scale(0.7);
+    // z-index:-1;
+  }
+  &.swiper-slide-visible {
+    transform:none;
+    opacity:1;
+  }
+  .card {
+    height:100%;
+  }
+}
+  .slider-nav {
+    justify-self: end; /* horizontally align to the right */
+    align-self: end; 
+    margin-bottom:24px;
+    gap:8px;
+    display:none;
+    @media screen and (min-width:768px) {
+    display:flex;
+    }
+    button {
+      position: relative;
+      
+      &:after {
+        content:none;
+      }
+    }
+  }
+  .posts {
+    display: grid;
+    gap: var(--gap);
+    grid-template-columns: repeat(1, 1fr);
+    list-style: none;
+    padding: 0;
+    @media screen and (min-width: 600px) {
+      &.columns-5,
+      &.columns-4,
+      &.columns-3,
+      &.columns-2 {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    @media screen and (min-width: 992px) {
+      &.columns-5,
+      &.columns-4,
+      &.columns-3 {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+    @media screen and (min-width: 1200px) {
+      &.columns-5,
+      &.columns-4 {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+    @media screen and (min-width: 1500px) {
+      &.columns-5 {
+        grid-template-columns: repeat(5, 1fr);
+      }
+    }
+  }
+
+  .posts-empty {
+    text-align: center;
+  }
+
+
+
+  @import "Partials/filter";
+  @import "Partials/pagination";
+}

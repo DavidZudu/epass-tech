@@ -1,0 +1,14 @@
+{% for filter in filters %}
+  <div class="filter-group" data-taxonomy="{{ filter.taxonomy }}">
+    <span class="filter-label">
+      <i class="fas fa-tag"></i>
+    </span>
+    <ul class="filter-list">
+      {% for term in filter.terms %}
+        <li class="{{ term.isActive ? 'active' : '' }}">
+          <a href="{{ term.link }}">{{ term.title }}</a>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+{% endfor %}

@@ -1,0 +1,24 @@
+<div class="pagination">
+  
+<a
+  href="{{ pagination.prev ? pagination.prev.link|e('esc_url') : '#' }}"
+  aria-disabled="{{ not pagination.prev ? 'true' : 'false' }}"
+  class="button button-previous">
+  {{ labels.previous }}
+</a>
+  
+    {# Select dropdown for page numbers #}
+    <select class="pagination-select small-caps" onchange="window.location.href=this.value;">
+        {% for page in pagination.pages %}
+            <option value="{{ page.link }}" {% if page.current %} selected {% endif %}>
+                {{ page.name }}&nbsp;&nbsp;
+            </option>
+        {% endfor %}
+    </select>
+    <a
+  href="{{ pagination.next ? pagination.next.link|e('esc_url') : '#' }}"
+  aria-disabled="{{ not pagination.next ? 'true' : 'false' }}"
+  class="button button-next">
+  {{ labels.next }}
+</a>
+</div>

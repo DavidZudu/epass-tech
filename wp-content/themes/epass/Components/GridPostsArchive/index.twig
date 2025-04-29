@@ -1,14 +1,14 @@
 <flynt-component name="GridPostsArchive" load:on="visible" class="componentSpacing {{'image-'~imagePosition}} {{'top' in options.padding ? '' : 'pt0'}} {{'bottom' in options.padding ? '' : 'pb0'}} {{'top' in options.borders ? 'border-top'}} {{'bottom' in options.borders ? 'border-bottom'}}">
-    <div class="container{{options.containerSize}}">
-        <div data-size="medium" data-align="center" data-text-align="center">
-            {# <h1>{{ title }}</h1> #}
-            {% set html = isHome ? preContentHtml : description %}
-            {{ html|e('wp_kses_post') }}
-        </div>
-        {% if filters %}
-            {% include 'Partials/_filter.twig' %}
+    <div class="container{{options.containerSize}}">    
+        {% if preContentHtml %}
+            <div class="block-content mb-6">
+                {{ preContentHtml|default('')|e('wp_kses_post') }}
+            </div>
         {% endif %}
 
+        {% if options.title %}
+            <h2 class="title h3 mb16">{{ options.title }}</h2>
+        {% endif %}
 
         {% if posts|length > 0 %}
             <section class="posts {{'columns-'~options.maxColumns}}">
