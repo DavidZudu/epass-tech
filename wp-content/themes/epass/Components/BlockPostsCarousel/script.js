@@ -1,18 +1,19 @@
 import Swiper from 'swiper/bundle';
 
 
-  new Swiper('.post-carousel', {
+document.querySelectorAll('.post-carousel').forEach((carousel) => {
+  const swiper = new Swiper(carousel, {
     watchSlidesProgress: true,
     slidesPerView: 1.2,
     spaceBetween: 16,
     loop: false,
     navigation: {
-      nextEl: '.button-next',
-      prevEl: '.button-prev',
+      nextEl: carousel.previousElementSibling.querySelector('.button-next'),
+      prevEl: carousel.previousElementSibling.querySelector('.button-prev'),
     },
     pagination: {
-      el: '.swiper-pagination', // <- add this!
-      clickable: true,          // <- makes dots clickable
+      el: carousel.querySelector('.swiper-pagination'),
+      clickable: true,
     },
     breakpoints: {
       768: {
@@ -23,4 +24,4 @@ import Swiper from 'swiper/bundle';
       }
     }
   });
-
+});
