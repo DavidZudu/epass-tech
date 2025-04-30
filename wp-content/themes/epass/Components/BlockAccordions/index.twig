@@ -1,4 +1,4 @@
-<flynt-component name="BlockAccordions" class="componentSpacing {{'image-'~imagePosition}} {{'top' in options.padding ? '' : 'pt0'}} {{'bottom' in options.padding ? '' : 'pb0'}} {{'top' in options.borders ? 'border-top'}} {{'bottom' in options.borders ? 'border-bottom'}}">
+<flynt-component name="BlockAccordions" class="componentSpacing {{options.oneAtATime ? 'one-at-a-time'}} {{'image-'~imagePosition}} {{'top' in options.padding ? '' : 'pt0'}} {{'bottom' in options.padding ? '' : 'pb0'}} {{'top' in options.borders ? 'border-top'}} {{'bottom' in options.borders ? 'border-bottom'}}">
     <div class="container {{options.containerSize}}">
         {% if sectionContent %}
             <div class="intro-content">

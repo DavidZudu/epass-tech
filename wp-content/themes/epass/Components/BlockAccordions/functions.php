@@ -59,7 +59,13 @@ function getACFLayout(): array
                 'name'       => 'options',
                 'type'       => 'group',
                 'layout'     => 'row',
-                'sub_fields' => [                   
+                'sub_fields' => [      
+                    [
+                    'label' => __('One at a time', 'flynt'),
+                    'name' => 'oneAtATime',
+                    'type' => 'true_false',
+                    'ui' => 1,
+                    ],             
                     FieldVariables\setContainerSize(),
                     FieldVariables\setPadding(),
                     FieldVariables\setBorders(),
