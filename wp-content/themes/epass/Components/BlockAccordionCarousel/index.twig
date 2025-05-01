@@ -1,0 +1,44 @@
+<flynt-component name="BlockAccordionCarousel" class="componentSpacing {{options.oneAtATime ? 'one-at-a-time'}} {{'top' in options.padding ? '' : 'pt0'}} {{'bottom' in options.padding ? '' : 'pb0'}} {{'top' in options.borders ? 'border-top'}} {{'bottom' in options.borders ? 'border-bottom'}}">
+    <div class="container {{options.containerSize}}">
+     {% if sectionContent %}
+            <div class="intro-content">
+                <div class="intro">{{sectionContent}}</div>
+            </div>
+        {% endif %}
+    </div>
+    <div class="container {{options.containerSize}}">
+        <div class="accordions">
+            {% for acc in accordions %}
+                <details class="dc-accordion" {{acc.isOpen ? 'open' }} data-slide="{{ loop.index - 1 }}">
+                    <summary>{{acc.title}}
+                    </summary>
+                    <div class="content">
+                        {{acc.content}}
+                    </div>
+                </details>
+            {% endfor %}
+        </div>
+
+        <div class="carousel image-right">
+            <div class="swiper accordion-carousel">
+              <img class="gradient-disc" src="{{theme.link}}/assets/images/purple-radial.svg" alt="">
+                    <img class="gradient-disc" src="{{theme.link}}/assets/images/green-radial.svg" alt="">
+                <div class="swiper-wrapper">
+                  
+                    {% for acc in accordions %}
+                    
+                        <div class="swiper-slide">                            
+                                <div class="image-wrap">
+                                    <img loading="lazy" class="img-" src="{{ acc.image.src }}" sizes="(max-width: 768px) 100vw, 780px" srcset="{{ acc.image.srcset }}" alt="{{ acc.image.alt ?? post.title }}"/>
+                                </div>                          
+                        </div>
+
+
+                    {% endfor %}
+                </div>
+            </div>
+
+            <nav class="swiper-pagination"></nav>
+        </div>
+    </div>
+</div></flynt-component>

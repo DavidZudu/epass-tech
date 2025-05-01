@@ -18,6 +18,7 @@ add_action('Flynt/afterRegisterComponents', function (): void {
                     // Components\BlockAnchor\getACFLayout(),
                     // Components\BlockImage\getACFLayout(),
                     Components\BlockAccordions\getACFLayout(),
+                    Components\BlockAccordionCarousel\getACFLayout(),
                     Components\BlockImageText\getACFLayout(),
                     Components\BlockContentGrid\getACFLayout(),
                     // Components\BlockSpacer\getACFLayout(),
