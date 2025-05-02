@@ -1,7 +1,5 @@
 flynt-component[name="BlockContentGrid"] {
-  .container {
-    
-  }
+ 
   .grid {
     display: grid;
     gap: var(--gap);
@@ -42,6 +40,9 @@ flynt-component[name="BlockContentGrid"] {
     .image {
       position: relative;
       overflow: hidden;
+      &.bottom {
+        order:2;
+      }
       @media screen and (max-width: 992px) {
         img {
           all: unset;

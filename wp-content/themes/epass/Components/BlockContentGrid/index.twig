@@ -3,7 +3,7 @@
         <section class="grid {{'columns-'~options.maxColumns}}">
             {% for entry in entries %}
                 <article class="entry">
-                    <div class="image">
+                    <div class="image {{entry.imagePosition}}">
                         <img loading="lazy" class="" src="{{ entry.image.src }}" sizes="100vw" srcset="{{ entry.image.srcset }}" alt="{{ entry.image.alt }}"/>
                     </div>
                     <div class="content">

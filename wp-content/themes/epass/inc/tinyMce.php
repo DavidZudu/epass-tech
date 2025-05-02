@@ -218,6 +218,27 @@ function getConfig(): array
                 ]
             ],
             [
+                'title' => 'Text Colours',
+                'icon' => '',
+                'items' => [
+                    [
+                        'title' => 'Teal',
+                        'classes' => 'c-primary',
+                        'inline' => 'span'
+                    ],                   
+                    [
+                        'title' => 'Teal Dark',
+                        'classes' => 'c-primary-d',
+                        'inline' => 'span'
+                    ],                   
+                    [
+                        'title' => 'Purple',
+                        'classes' => 'c-secondary',
+                        'inline' => 'span'
+                    ],                   
+                ]
+            ],
+            [
                 'title' => __('Buttons', 'flynt'),
                 'icon' => '',
                 'items' => [

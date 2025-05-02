@@ -32,6 +32,17 @@ $sides: (top, bottom, left, right, all);
   }
 }
 
+// colors
+.c-primary {
+  color: var(--color-primary)!important;
+}
+.c-primary-d{
+  color: var(--color-primary-d)!important;
+}
+.c-secondary {
+  color: var(--color-secondary)!important;
+}
+
 // borders
 .border-top {
   border-top: var(--border);

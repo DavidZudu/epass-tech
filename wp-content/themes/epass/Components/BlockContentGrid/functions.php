@@ -17,22 +17,33 @@ function getACFLayout(): array
                 'endpoint'  => 0,
             ],
             [
-                'label'      => __('Content Entries', 'flynt'),
-                'name'       => 'entries',
-                'type'       => 'repeater',
-                'layout'    => 'block',
+                'label'        => __('Content Entries', 'flynt'),
+                'name'         => 'entries',
+                'type'         => 'repeater',
+                'layout'       => 'block',
                 'button_label' => __('Add Entry', 'flynt'),
-                'sub_fields' => [                   
+                'sub_fields'   => [
                     [
                         'label'        => __('Image', 'flynt'),
                         'instructions' => __('Image-Format: JPG, PNG, SVG, WebP.', 'flynt'),
                         'name'         => 'image',
                         'type'         => 'image',
                         'preview_size' => 'medium',
-                        'required'     => 1,
                         'mime_types'   => 'jpg,jpeg,png,svg,webp',
                         'wrapper'      => [
-                            'width' => 40,
+                            'width' => 30,
+                        ],
+                    ],
+                    [
+                        'label'   => __('Image position', 'flynt'),
+                        'name'    => 'imagePosition',
+                        'type'    => 'radio',
+                        'choices' => [
+                            'top'    => __('Top', 'flynt'),
+                            'bottom' => __('Bottom', 'flynt'),
+                        ],
+                        'wrapper'      => [
+                            'width' => 15,
                         ],
                     ],
                     [
@@ -41,9 +52,8 @@ function getACFLayout(): array
                         'type'         => 'wysiwyg',
                         'delay'        => 0,
                         'media_upload' => 0,
-                        'required'     => 1,
                         'wrapper'      => [
-                            'width' => 60,
+                            'width' => 50,
                         ],
                     ],
                     FieldVariables\setCTAs(),

@@ -1,4 +1,7 @@
 flynt-component[name="BlockAccordionCarousel"] {
+  .intro {
+    margin-bottom:40px;
+  }
   .wrap {
     display: grid;
     grid-template-columns: minmax(0, 1fr);
