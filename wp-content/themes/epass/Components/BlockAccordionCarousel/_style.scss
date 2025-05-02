@@ -1,5 +1,5 @@
 flynt-component[name="BlockAccordionCarousel"] {
-  .container {
+  .wrap {
     display: grid;
     grid-template-columns: minmax(0, 1fr);
     gap: var(--gap);
@@ -80,5 +80,11 @@ flynt-component[name="BlockAccordionCarousel"] {
       @extend.small;
       transition: var(--transition);
     }
+  }
+  .ctas {
+    display:flex;
+    flex-wrap: wrap;
+    gap:16px;
+    justify-content: center;
   }
 }
