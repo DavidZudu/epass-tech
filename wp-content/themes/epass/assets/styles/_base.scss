@@ -256,30 +256,28 @@ fieldset {
 
 legend {
   color: var(--color-text);
-  font-size: var(--font-size-body);
   font-weight: 700;
   padding: 0;
 }
 
 label {
-  color: var(--color-text-muted);
-  font-size: var(--font-size-body-small);
-  font-weight: 500;
+  @extend .small-caps;
   margin-block-start: 0;
 }
 
 [type="tel"], [type="url"], [type="text"], [type="date"], [type="email"], [type="search"], [type="number"], [type="password"], textarea, select {
   appearance: none;
   background-color: transparent;
-  border: 2px solid var(--color-border-secondary);
-  border-radius: 0;
-  caret-color: var(--color-text);
-  color: var(--color-text);
-  font-size: var(--font-size-body-small);
+  border: var(--border);
+  border-radius: 8px;
   max-inline-size: 100%;
   padding-block: 0.75rem;
   padding-inline: 0.625rem;
-  transition: border-color 0.3s ease-in-out;
+  transition: var(--transition);
+  width:100%;
+  &:hover {
+    border-color: var(--color-primary);
+  }
 
   &::placeholder {
     color: var(--color-border-secondary);

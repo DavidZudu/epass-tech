@@ -11,14 +11,19 @@
   }
   ul {
     @extend.list-reset;
-    li {
-      &.button {
-        all: unset; /* removes almost all styles */
-        a {
-          @extend.button;
-        }
-      }
-    }
+    // li {
+    //   &.button {
+    //     all: unset; /* removes almost all styles */
+    //     a {
+    //       @extend.button;
+    //     }
+    //   }
+    //   &.button-special {
+    //     a {
+    //       @extend.button-special;
+    //     }
+    //   }
+    // }
   }
   a {
     @extend.invert;

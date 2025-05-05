@@ -1,59 +1,68 @@
-button{
-   cursor: pointer;
+button {
+  cursor: pointer;
 }
 .button {
-    display:inline-flex;
-    align-items:center;
-    justify-content:center;
-    background:var(--color-primary);
-    padding:12px 32px;
-    border-radius:8px;
-    box-shadow:var(--box-shadow-md);
-    @extend.small-caps;   
-    transition:var(--transition);
-    text-decoration: none!important;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-primary);
+  padding: 12px 32px;
+  border-radius: 8px;
+  box-shadow: var(--box-shadow-md);
+  @extend.small-caps;
+  transition: var(--transition);
+  text-decoration: none !important;
+  &:hover {
+    background: var(--color-primary);
+    transform: translateY(-2px) scale(1.02);
+  }
+  &.translucent {
+    background: rgb(from var(--color-primary) r g b / 20%);
+    border: 1px solid var(--color-primary);
+    box-shadow: none;
     &:hover {
-        background:var(--color-primary);
-        transform:translateY(-2px) scale(1.02);
+      background: rgb(from var(--color-primary) r g b / 30%);
+      transform: translateY(-2px) scale(1.02);
     }
-    &.translucent {
-        background:rgb(from var(--color-primary) r g b / 20%);
-        border:1px solid var(--color-primary);
-        box-shadow:none;
-        &:hover {
-            background:rgb(from var(--color-primary) r g b / 30%);
-            transform:translateY(-2px) scale(1.02);
-        }
-    } 
-    &.circle {
-        border-radius:999px;
-        width:2.5em;
-        height:2.5em;
-        padding:0;
-    }
+  }
+  &.circle {
+    border-radius: 999px;
+    width: 2.5em;
+    height: 2.5em;
+    padding: 0;
+  }
 
-    // Small
-    &.small {
-        padding:8px 16px;
-        font-size:var(--font-size-body-small);
-    }
-    &[aria-disabled="true"],[disabled] {
-        pointer-events: none;
-        opacity: 0.3;
-        cursor: not-allowed;
-      }
+
+  // Small
+  &.small {
+    padding: 8px 16px;
+    font-size: var(--font-size-body-small);
+  }
+  &[aria-disabled="true"],
+  [disabled] {
+    pointer-events: none;
+    opacity: 0.3;
+    cursor: not-allowed;
+  }
+}
+
+@keyframes moveBackground {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 100% 0;
+  }
 }
 
 .icon-button {
-    display:inline-flex;
-    align-items:center;
-    justify-content:center;
-    flex:0 0 auto;
-    width:2em;
-    height:2em;
-    background:rgb(from var(--color-primary) r g b / 20%);
-    border-radius:999px;
-    border:1px solid var(--color-primary);
-
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  width: 2em;
+  height: 2em;
+  background: rgb(from var(--color-primary) r g b / 20%);
+  border-radius: 999px;
+  border: 1px solid var(--color-primary);
 }
-

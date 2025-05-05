@@ -1,0 +1,47 @@
+flynt-component[name="BlockTeam"] {
+  .container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--gap);
+
+    @media (min-width: 992px) {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+  .leads {
+    .team-leads-wrap {
+      .member {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+        gap:24px;
+        margin-bottom: 24px;
+        .image {
+          position: relative;
+          padding-top:100%;
+          border-radius:8px;
+          border:var(--border);
+          overflow:hidden;
+          align-self:start;
+        }
+      }
+    }
+  }
+  .team {
+    .team-wrap {
+      display:grid;
+      gap:16px;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      .member {
+        .image {
+          position: relative;
+          padding-top:100%;
+          border-radius:8px;
+          border:var(--border);
+          overflow:hidden;
+          align-self:start;
+          margin-bottom:8px;
+        }
+      }
+    }
+  }
+}

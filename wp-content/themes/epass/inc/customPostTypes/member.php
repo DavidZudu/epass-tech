@@ -6,7 +6,36 @@
  * For a full list of parameters see https://developer.wordpress.org/reference/functions/register_post_type/ or use https://generatewp.com/post-type/ to generate the code for you.
  */
 
-namespace Flynt\CustomPostTypes;
+ namespace Flynt\CustomPostTypes;
+ use ACFComposer\ACFComposer;
+ use Flynt\Components;
+ 
+
+
+add_action('Flynt/afterRegisterComponents', function () {
+    ACFComposer::registerFieldGroup([
+        'name' => 'courseFields',
+        'title' => 'Course Fields',
+        'fields' => [
+           [
+           'label' => __('Job title', 'flynt'),
+           'name' => 'jobTitle',
+           'type' => 'text',
+           ],        
+        ],
+        'position' => 'side',
+        'style' => 'default',
+        'location' => [
+            [
+                [
+                    'param' => 'post_type',
+                    'operator' => '==',
+                    'value' => 'member',
+                ],
+            ],
+        ],
+    ]);
+});
 
 add_action('init', function (): void {
     $labels = [
@@ -43,7 +72,7 @@ add_action('init', function (): void {
         'label'                 => __('Member', 'flynt'),
         'description'           => __('Member Description', 'flynt'),
         'labels'                => $labels,
-        'supports'              => ['title', 'editor', 'revisions'],
+        'supports'              => ['title', 'editor', 'revisions', 'thumbnail'],
         'filter'            => ['team'],
         'hierarchical'          => false,
         'public'                => true,

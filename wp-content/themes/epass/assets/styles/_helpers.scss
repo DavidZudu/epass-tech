@@ -87,9 +87,13 @@ $sides: (top, bottom, left, right, all);
 
 .lead {
   font-size:var(--font-size-body-large);
+  font-weight:300;
 }
 .small {
   font-size:var(--font-size-body-small);
+}
+.faded {
+  opacity:0.75;
 }
 
 // Small downward triangle
@@ -105,7 +109,7 @@ $sides: (top, bottom, left, right, all);
 
 .small-caps {
   text-transform: uppercase;
-  font-size:var(--font-size-small);
+  font-size:14px;
   font-weight:900;
   font-family: var(--font-family-text);
   letter-spacing: 0.025em; 

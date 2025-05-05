@@ -97,13 +97,13 @@ sup {
 }
 
 /* Normalize outline to ensure A11y */
-:focus-visible {
-  outline-color: Highlight;
-  outline-color: -webkit-focus-ring-color;
-  outline-offset: 2px;
-  outline-style: dotted;
-  outline-width: 2px;
-}
+// :focus-visible {
+//   outline-color: Highlight;
+//   outline-color: -webkit-focus-ring-color;
+//   outline-offset: 2px;
+//   outline-style: dotted;
+//   outline-width: 2px;
+// }
 
 /* Disable animations and transitions for users that prefer reduced motion */
 @media (prefers-reduced-motion: reduce) {

@@ -1,0 +1,45 @@
+<flynt-component name="BlockTeam" class="componentSpacing {{'top' in options.padding ? '' : 'pt0'}} {{'bottom' in options.padding ? '' : 'pb0'}} {{'top' in options.borders ? 'border-top'}} {{'bottom' in options.borders ? 'border-bottom'}}">
+    <div class="container {{options.containerSize}}">
+        {% if teamLeads %}
+            <div class="leads">
+                {% if teamLeadsIntro %}
+                    {{teamLeadsIntro}}
+                    <div class="team-leads-wrap">
+                        {% for member in teamLeads %}
+                            <article class="member">
+                                <div class="image">
+                                    <img loading="lazy" class="img-fill" src="{{ member.thumbnail.src }}" sizes="100vw" srcset="{{ member.thumbnail.srcset }}" alt="{{ member.thumbnail.alt }}"/>
+                                </div>
+                                <div class="content">
+                                   <h3 class="mb8"> {{member.title}}</h3>
+                                   <p class="mb16 faded">{{member.jobTitle}}</p>
+                                  <div class="small"> {{member.content}}</div>
+                                </div>
+                            </article>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+        {% endif %}
+        {% if team %}
+            <div class="team">
+                {% if teamIntro %}
+                    {{teamIntro}}
+                    <div class="team-wrap">
+                        {% for member in team %}
+                           <article class="member">
+                                <div class="image">
+                                    <img loading="lazy" class="img-fill" src="{{ member.thumbnail.src }}" sizes="100vw" srcset="{{ member.thumbnail.srcset }}" alt="{{ member.thumbnail.alt }}"/>
+                                </div>
+                                <div class="content">
+                                   {# <h3 class="h6 mb0"> {{member.title}}</h3> #}
+                                   {# <p class="small">{{member.jobTitle}}</p> #}
+                                </div>
+                            </article>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+        {% endif %}
+    </div>
+</flynt-component>
