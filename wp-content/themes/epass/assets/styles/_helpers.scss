@@ -240,3 +240,12 @@ $sides: (top, bottom, left, right, all);
   background-color: var(--color-background);
   color: var(--color-text);
 }
+
+
+.custom-li {
+  display:flex;
+  gap:16px;
+  i {
+    flex:0 0 auto;
+  }
+}

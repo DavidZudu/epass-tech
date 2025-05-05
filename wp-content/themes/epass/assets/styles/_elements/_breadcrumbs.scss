@@ -1,10 +1,20 @@
 .breadcrumbs {
-    border-bottom:var(--border);
-    padding-block:4px;
+    padding-block:8px;
+    text-align: left;
     @extend .small;
     .container {
         display:flex;
+        justify-content: center;
         flex-wrap:wrap;
         gap:8px;
+        [property="itemListElement"] {
+            max-width: 200px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+        }
+        .current-item {
+            font-weight:bold;
+        }
     }
 }

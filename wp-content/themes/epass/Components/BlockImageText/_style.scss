@@ -4,7 +4,7 @@ flynt-component[name="BlockImageText"] {
     grid-template-columns: 1fr;
     gap: var(--gap);
 
-    @media screen and (min-width: 992px) {
+    @media (min-width: 992px) {
       grid-template-columns: repeat(2, minmax(0, 1fr));
     }
   }
@@ -18,6 +18,12 @@ flynt-component[name="BlockImageText"] {
 
     img {
       display: block;
+
+      @media (max-width: 992px) {
+        position: relative;
+        transform: none;
+        left: auto;
+      }
     }
 
     .gradient-disc {
@@ -42,7 +48,7 @@ flynt-component[name="BlockImageText"] {
       border-radius: 0 8px 0 0;
       overflow: hidden;
 
-      @media screen and (min-width: 992px) {
+      @media (min-width: 992px) {
         position: absolute;
         top: 24px;
         left: 0;
@@ -50,21 +56,14 @@ flynt-component[name="BlockImageText"] {
         bottom: 0;
       }
     }
-
-    @media screen and (max-width: 992px) {
-      img {
-        position: relative;
-        transform: none;
-        left: auto;
-      }
-    }
   }
 
+  // Modifier for right-aligned image
   &.image-right {
     .image {
       padding: 24px 0 0 24px;
 
-      @media screen and (min-width: 992px) {
+      @media (min-width: 992px) {
         order: 2;
       }
 
@@ -84,13 +83,45 @@ flynt-component[name="BlockImageText"] {
         border-left: var(--border);
         border-radius: 8px 0 0 0;
 
-        @media screen and (min-width: 992px) {
+        @media (min-width: 992px) {
           position: absolute;
           top: 24px;
           left: 24px;
           right: 0;
           bottom: 0;
         }
+      }
+    }
+  }
+
+  // Modifier: keep-aspect applied at root level
+  &.keep-aspect {
+    .image {
+      align-self: start;
+    }
+
+    .image-wrap {
+      @media (min-width: 992px) {
+        position: relative;
+        top: auto;
+        left: auto;
+        right: auto;
+        bottom: auto;
+      }
+    }
+
+    .responsive-img {
+      // Optional: Add object-fit or aspect-ratio tweaks here if needed
+    }
+  }
+  &.image-right.keep-aspect {
+    .image-wrap {
+      @media (min-width: 992px) {
+        position: relative;
+        top: auto;
+        left: auto;
+        right: auto;
+        bottom: auto;
       }
     }
   }
