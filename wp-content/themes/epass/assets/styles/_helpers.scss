@@ -66,6 +66,16 @@ $sides: (top, bottom, left, right, all);
   }
 }
 
+.anchor-offset {
+  display:block;
+  width:1px;
+  height:1px;
+  background:Red;
+  transform:translateY(-60px);
+  pointer-events: none;
+  opacity:0;
+}
+
 .img-fill {
   position: absolute;
   top: 50%;

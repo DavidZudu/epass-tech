@@ -41,6 +41,7 @@ function getACFLayout(): array
                     FieldVariables\setContainerSize(),
                     FieldVariables\setPadding(),
                     FieldVariables\setBorders(),
+                    FieldVariables\setAnchor(),
                 ]
             ]
         ]

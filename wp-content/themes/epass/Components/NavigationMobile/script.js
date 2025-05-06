@@ -3,9 +3,13 @@ const mainLinks = mainNav.querySelector(".menu-wrap");
 setMaxHeightFromTop(mainLinks);
 
 document.addEventListener("click", function (e) {
-  if (e.target && !e.target.closest('[name="NavigationMobile"]')) {    
+  if (e.target && !e.target.closest('[name="NavigationMobile"]') ) {    
     closeNav();
   }
+  if (e.target && e.target.closest('a[href*="#"]') ) {    
+    closeNav();
+  }
+  
   if (e.target && e.target.closest(".nav-toggle")) {
     toggleNav();
   }   

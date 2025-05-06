@@ -13,7 +13,15 @@ add_action('init', function () {
 
 add_filter('Flynt/addComponentData?name=NavigationDesktop', function ($data) {
   $data['navOptions'] = Options::getGlobal('NavigationOptions');
-    $data['menu'] = Timber::get_menu('navigation_primary') ?? Timber::get_pages_menu();
+   
+    
+  
+  $menu = Timber::get_menu('navigation_primary') ?? Timber::get_pages_menu();
+  
+  apply_anchors_to_menu_items($menu->items);
+  
+  $data['menu'] = $menu;
+  
     // $data['menuSecondary'] = Timber::get_menu('navigation_secondary') ?? Timber::get_pages_menu();
     $data['menuExtras'] = Timber::get_menu('navigation_primary_extras') ?? Timber::get_pages_menu();
     $data['logo'] = wp_get_attachment_image( get_theme_mod( 'custom_logo' ) , 'full', '', ["class" => "logo"] );

@@ -2,6 +2,7 @@ import 'vite/modulepreload-polyfill'
 import FlyntComponent from './scripts/FlyntComponent'
 import './scripts/scroll-position-classes'
 import './scripts/dc-accordions'
+import './scripts/anchor-scroll'
 
 import 'lazysizes'
 

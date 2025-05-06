@@ -146,6 +146,15 @@ function setCTAs($wrapper = '100')
         ],
     ];
 }
+function setAnchor()
+{
+    return [
+        'label' => __('Section Anchor', 'flynt'),
+        'name' => 'sectionAnchor',
+        'type' => 'text',
+        'instructions' => 'Anchor'        
+    ];    
+}
 
 
 /// FLYNT FIELDS ////
