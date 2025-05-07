@@ -51,19 +51,33 @@ function getACFLayout()
                 'label' => __('Add image', 'flynt'),
                 'name'  => 'image',
                 'type'  => 'image',
+                'preview_size' => 'medium',
+                'wrapper'      => [
+                    'width' => '50',
+                ],
             ],
             [
-            'label' => __('Logo label', 'flynt'),
-            'name' => 'logoLabel',
-            'type' => 'text',
-            'wrapper' => [
+                'label'        => __('Add Video', 'flynt'),
+                'name'         => 'video',
+                'type'         => 'file',
+                'mime_types'   => 'mp4',
+                'preview_size' => 'medium',
+                'wrapper'      => [
+                    'width' => '50',
+                ],
+            ],
+            [
+                'label'   => __('Logo label', 'flynt'),
+                'name'    => 'logoLabel',
+                'type'    => 'text',
+                'wrapper' => [
                     'width' => 30,
                 ],
             ],
             [
-                'label' => __('Add Logos', 'flynt'),
-                'name'  => 'logos',
-                'type'  => 'gallery',
+                'label'   => __('Add Logos', 'flynt'),
+                'name'    => 'logos',
+                'type'    => 'gallery',
                 'wrapper' => [
                     'width' => 70,
                 ],
