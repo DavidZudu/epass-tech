@@ -7,9 +7,15 @@
     {% if post.meta('headerComponents')|length == 0 %}
         {{ renderComponent('LayoutBasicHeader') }}
     {% endif %}
-    {{ renderComponent('BlockWysiwyg', {contentHtml:post.content,options: {padding:['top','bottom'],borders:['bottom']}}) }}
+    {% if post.thumbnail and post.post_type == 'post' %}
+        <div class="thumbnail-wrap container mt24">
+            <img loading="lazy" class="img-style" src="{{ post.thumbnail.src }}" sizes="100vw" srcset="{{ post.thumbnail.srcset }}" alt="{{ post.thumbnail.alt }}"/>
+        </div>
+    {% endif %}
+
+    {{ renderComponent('BlockWysiwyg', {contentHtml:post.content,options: {containerSize:'container--small',padding:['top','bottom'],borders:['bottom']}}) }}
     {% for component in post.meta('pageComponents') %}
         {{ renderComponent(component) }}
     {% endfor %}
+    {{ renderComponent('BlockPostsCarousel', {sectionContent:'<h2>Related News</h2>',showRelated:1,options: {containerSize:'container',padding:['top','bottom'],borders:['bottom']}}) }}
 {% endblock %}
-

@@ -7,6 +7,7 @@
   box-shadow: var(--box-shadow-lg);
   overflow: hidden;
   text-decoration: none;
+  transition: var(--transition-sm), outline-color 0s, outline-offset 0s;
   .image {
     position: relative;
     padding-top: 56.25%;
@@ -30,5 +31,11 @@
       -webkit-box-orient: vertical;
       margin-bottom: 0;
     }
+  }
+}
+a.card {
+  &:hover {
+    outline:3px solid var(--color-primary);
+    outline-offset: 3px;
   }
 }

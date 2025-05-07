@@ -95,6 +95,11 @@ $sides: (top, bottom, left, right, all);
   }
 }
 
+.img-style {
+  border:var(--border);
+  border-radius:8px;
+}
+
 .lead {
   font-size:var(--font-size-body-large);
   font-weight:300;

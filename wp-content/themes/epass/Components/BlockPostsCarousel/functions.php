@@ -11,7 +11,8 @@ const FILTER_BY_TAXONOMY = 'category';
 add_filter('Flynt/addComponentData?name=BlockPostsCarousel', function (array $data): array {
     $data['uuid'] ??= wp_generate_uuid4();
 
-    $manualSource = $data['manualSource'] ?? null;
+    $showRelated     = $data['showRelated'] ?? false;
+    $manualSource    = $data['manualSource'] ?? null;
 
     $manualPostType = null;
     $manualTerm     = null;
@@ -29,26 +30,45 @@ add_filter('Flynt/addComponentData?name=BlockPostsCarousel', function (array $da
         ? get_taxonomy($manualTerm->taxonomy)->object_type[0] ?? POST_TYPE
         : ($manualPostType ?: POST_TYPE);
 
-    // Build the query
-    if ($manualPostType || $manualTerm) {
-        $queryArgs = [
-            'post_type'      => $postType,
-            'posts_per_page' => 6,
-        ];
+    $queryArgs = [
+        'post_type'      => $postType,
+        'posts_per_page' => 6,
+        'orderby'        => 'date',
+        'order'          => 'DESC',
+    ];
 
-        if ($manualTerm && $manualTerm->taxonomy) {
+    // 🔁 Show related posts logic
+    if ($showRelated && is_singular()) {
+        $postId   = get_the_ID();
+        $taxonomy = getPostTermsbyPostId($postId);
+    
+        $terms = get_the_terms($postId, $taxonomy);
+    
+        if (!empty($terms) && !is_wp_error($terms)) {
+            $termIds = wp_list_pluck($terms, 'term_id');
+    
             $queryArgs['tax_query'] = [[
-                'taxonomy' => $manualTerm->taxonomy,
+                'taxonomy' => $taxonomy,
                 'field'    => 'term_id',
-                'terms'    => [$manualTerm->term_id],
+                'terms'    => $termIds,
             ]];
+    
+            $queryArgs['post__not_in'] = [$postId]; // exclude current post
         }
-
-        $data['posts'] = Timber::get_posts($queryArgs);
+    } elseif ($manualTerm && $manualTerm->taxonomy) {
+        // fallback: manual term filtering
+        $queryArgs['tax_query'] = [[
+            'taxonomy' => $manualTerm->taxonomy,
+            'field'    => 'term_id',
+            'terms'    => [$manualTerm->term_id],
+        ]];
     }
+
+    $data['posts'] = Timber::get_posts($queryArgs);
 
     return $data;
 });
+
 
 function getACFLayout(): array
 {

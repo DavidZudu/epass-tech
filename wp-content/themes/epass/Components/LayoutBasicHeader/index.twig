@@ -1,17 +1,23 @@
 <flynt-component name="LayoutBasicHeader" class=" {{largeHeader ? 'lg'}}">
-    <div class="componentSpacing">
-        <div class="content">
-            <h1 class="mb0">{{ pageTitle ?? post.title ?? fn('get_the_archive_title') }}</h1>
+    <div class="container {{options.containerSize}}">
+        <div class="componentSpacing">
+            <div class="content">
+              {% if post.date and post.post_type == 'post' %}
+                <div class="small-caps mb16"> <time class="meta-date " datetime="{{ post.post_date }}">{{ post.date|date }}</time></div>
+                   
+                {% endif %} 
+                <h1 class="mb0">{{ pageTitle ?? post.title ?? fn('get_the_archive_title') }}</h1>
+                
+            </div>
         </div>
+        {% if not function('is_front_page') %}
+            <nav class="breadcrumbs">
+                <div class="container">
+                    {% if function('bcn_display') %}
+                        {{ function('bcn_display') }}
+                    {% endif %}
+                </div>
+            </nav>
+        {% endif %}
     </div>
-    {% if not function('is_front_page') %}
-    <nav class="breadcrumbs">
-        <div class="container">
-            {% if function('bcn_display') %}
-                {{ function('bcn_display') }}
-            {% endif %}
-        </div>
-    </nav>
-{% endif %}
-
 </flynt-component>
