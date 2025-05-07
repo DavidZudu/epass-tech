@@ -94,6 +94,28 @@ $sides: (top, bottom, left, right, all);
     max-height: none;
   }
 }
+.img-fit {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 101%;
+  height: 101%;
+  object-fit: contain;
+  pointer-events: none; // optional: if it's decorative
+  user-select: none;
+  &.padded {
+    width: calc(100% - 24px);
+    height: calc(100% - 24px);
+  }
+  // IE11 fallback (optional)
+  @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+    object-fit: none;
+    max-width: 100%;
+    max-height: 100%;
+  }
+}
+
 
 .img-style {
   border:var(--border);

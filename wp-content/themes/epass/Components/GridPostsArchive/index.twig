@@ -16,13 +16,20 @@
                 {% for post in posts %}
                     <a href="{{post.link}}" class="card post">
                         <div class="image">
-                            {% if post.thumbnail %}
-                                <img loading="lazy" class="img-fill" src="{{ post.thumbnail.src }}" sizes="(max-width: 768px) 100vw, 780px" srcset="{{ post.thumbnail.srcset }}" alt="{{ post.thumbnail.alt }}"/>
-                            {% endif %}
-                            <span class="date pill" title="{{post.date}}">
-                                {{ fn('smartDate', post.date) }}
+                            {% if post.post_type == 'post' %}
 
-                            </span>
+                                        {% set categories = fn('get_the_category', post.id) %}
+                                        {% if categories|length > 0 %}
+                                            {% set category = categories[0] %}
+                                            {% set catImage = fn('get_field', 'catImage', 'category_' ~ category.term_id) %}
+                                            {% if catImage %}
+                                                <img loading="lazy" class="img-fit padded" src="{{ catImage.src }}" alt="{{ catImage.alt ?? category.name }}"/>
+                                            {% endif %}
+                                        {% endif %}
+                                    {% else %}
+
+                                        <img loading="lazy" class="img-fill" src="{{ post.thumbnail.src }}" sizes="(max-width: 768px) 100vw, 780px" srcset="{{ post.thumbnail.srcset }}" alt="{{ post.thumbnail.alt ?? post.title }}"/>
+                                    {% endif %}
                         </div>
                         <div class="content">
                                 {% set taxonomy = fn('getPostTermsbyPostId',post.ID) %}
