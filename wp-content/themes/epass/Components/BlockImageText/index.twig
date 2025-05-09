@@ -1,7 +1,7 @@
 <span class="anchor-offset" id="{{options.sectionAnchor}}" aria-hidden="true"></span>
 <flynt-component
   name="BlockImageText"
-  class="componentSpacing image-{{ imagePosition }}
+  class="componentSpacing image-{{ imagePosition }} {{options.removeBorder ? 'no-border'}}
    {{'top' in options.padding ? '' : 'pt0'}} 
    {{'bottom' in options.padding ? '' : 'pb0'}}
     {{'top' in options.borders ? 'border-top'}}
