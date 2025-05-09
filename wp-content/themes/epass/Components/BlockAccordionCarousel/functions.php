@@ -72,6 +72,13 @@ function getACFLayout(): array
                         'type' => 'true_false',
                         'ui' => 1,
                         ],  
+                    [
+                        'label' => __('One image', 'flynt'),
+                        'name' => 'oneImage',
+                        'type' => 'true_false',
+                        'instructions' => __('If checked, only the first image will be shown.', 'flynt'),
+                        'ui' => 1,
+                        ],  
                     FieldVariables\setContainerSize(),
                     FieldVariables\setPadding(),
                     FieldVariables\setBorders(),

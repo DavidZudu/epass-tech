@@ -17,7 +17,7 @@
           loading="lazy"
           class="{{ options.keepAspect ? '' : 'img-fill' }}"
           src="{{ image.src }}"
-          sizes="100vw"
+          sizes="(min-width: 992px) 500px , 100vw"
           srcset="{{ image.srcset }}"
           alt="{{ image.alt }}"
         />

@@ -5,6 +5,9 @@ document
   .forEach((component) => {
     const swiperEl = component.querySelector(".accordion-carousel");
     const accordionEls = component.querySelectorAll(".dc-accordion");
+    const oneImage = component.classList.contains("one-image");
+console.log("oneImage", oneImage);
+
 
     const swiperInstance = new Swiper(swiperEl, {
       watchSlidesProgress: true,
@@ -14,7 +17,7 @@ document
       spaceBetween: 0,
       loop: false,
       autoHeight: true,
-      autoplay: {
+      autoplay: oneImage ? false : {
         delay: 4000, // Time in ms between slides (3000ms = 3s)
         disableOnInteraction: false, // Keep autoplay running after user interactions
       },
@@ -23,6 +26,10 @@ document
         crossFade: true, // optional but gives smoother transitions
       },
     });
+
+    if (oneImage) {
+      return;
+     }
 
     // Link accordion clicks to swiper slides
     accordionEls.forEach((accordion) => {
